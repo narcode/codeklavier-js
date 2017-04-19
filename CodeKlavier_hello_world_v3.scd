@@ -23,15 +23,15 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 ~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
-~ost.~quant=0;
+~ost.quant=~quant;
 ~ost1=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/o}, 1), Pfuncn({1/w},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch1},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
-~ost1.~quant=0;
+~ost1.quant=~quant;
 ~ost2=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/d}, 1), Pfuncn({1/a},1), Pfuncn({1/n},1)], inf), \ctranspose, Pfunc{~pitch2},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
-~ost2.~quant=0;
+~ost2quant=~quant;
 
 // random ostinatos
 ~rand=Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
@@ -40,13 +40,13 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 
 // hello pulse
 ~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m)});
-~hello.~quant=0;
+~hello.quant=~quant;
 ~hello2=Pdef(\hello2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m)});
-~hello2.~quant=0;
+~hello2.quant=~quant;
 ~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m)});
-~hello3.~quant=0;
+~hello3.quant=~quant;
 
-~hello2.~quant=0;
+~hello2.quant=~quant;
 ~h1o=0;
 ~h2o=0;
 ~h3o=0;
