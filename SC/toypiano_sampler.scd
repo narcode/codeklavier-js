@@ -20,10 +20,11 @@ s.sync;
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
   var midinote = args[1]-56;
+  /*args.postln;*/
 if (midinote < 64) {
   Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
     }
-  }, srcID: 0);
+  }, srcID: 1151127154);
 
 s.sync;
 
