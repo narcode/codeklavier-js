@@ -8,4 +8,5 @@
 
 #### Place your Requests here ####
 - a sweep for clusters
-- reset all variables
+- reset all variables -> DONE
+- make toypiano sampler in SuperCollider 
