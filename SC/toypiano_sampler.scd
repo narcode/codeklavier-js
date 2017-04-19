@@ -21,7 +21,7 @@ s.sync;
 MIDIdef.noteOn(\toypiano, {arg ...args;
   var midinote = args[1]-56;
 args.postln;
-  Ndef(\toypiano, {PlayBuf.ar(2, b[1], loop:0) * EnvGen.kr(Env.perc(0.01, 0.3))}).play(0);
+  Ndef(\toypiano, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 0.3))}).play(0);
   });
 
 s.sync;
