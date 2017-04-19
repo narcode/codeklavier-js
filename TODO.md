@@ -7,4 +7,5 @@
 - scroll screen automatic
 
 #### Place your Requests here ####
-a sweep for clusters
+- a sweep for clusters
+- reset all variables
