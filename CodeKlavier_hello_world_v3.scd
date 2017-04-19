@@ -51,7 +51,6 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 ~h2o=0;
 ~h3o=0;
 
-~hello2.play;
 
 h=e=l=o=w=d=a=r=n=1;
 
