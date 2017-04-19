@@ -33,11 +33,10 @@ s.sync;
 // random ostinatos
 
 ~rand=Tdef(\randostinato, {
-var rit = (1/2).rrand(4).round(0.5);
-var rit2 = (1/2).rrand(4).round(0.5);
-var rit3 = (1/2).rrand(4).round(0.5);
-	Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/(h*rit)}, 1), Pfuncn({1/(e*rit2)},1), Pfuncn({1/(l*rit3)},1)], inf), \ctranspose, Pfunc{~pitch},
-\midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
+var randrit = Pxrand([Pfuncn({1/(h*(1/2).rrand(4).round(0.5))}, 1), Pfuncn({1/(e*(1/2).rrand(4).round(0.5))},1), Pfuncn({1/(l*(1/2).rrand(4).round(0.5))},1)], inf);
+var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi].scramble;
+	Pdef(\ostinato1, {Pbind(\dur, randrit, \ctranspose, Pfunc{~pitch},
+\midinote, Pseq(randpitch, inf),
 \type, \midi, \midiout, m)})});
 s.sync;
 // hello pulse
