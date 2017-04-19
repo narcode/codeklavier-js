@@ -27,5 +27,5 @@ if (midinote < 64) {
   }, srcID: 1151127154);
 
 s.sync;
-
+"Toy piano sampler ready!";
 }.fork;
