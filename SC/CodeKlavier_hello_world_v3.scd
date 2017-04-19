@@ -31,7 +31,10 @@ s.sync;
 ~ost2quant=~quant;
 s.sync;
 // random ostinatos
-~rand=Tdef(\randostinato, {Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/(h*1.rrand(4))}, 1), Pfuncn({1/(e*1.rrand(4))},1), Pfuncn({1/(l*1.rrand(4))},1)], inf), \ctranspose, Pfunc{~pitch},
+
+~rand=Tdef(\randostinato, {
+var rit = (1/2).rrand(4).round(0.5);
+	Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/(h*rit)}, 1), Pfuncn({1/(e*rit)},1), Pfuncn({1/(l*rit))},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)})});
 s.sync;
