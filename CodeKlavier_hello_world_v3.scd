@@ -17,7 +17,7 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
 
 // adjust the quant;
-~~quant=1/4;
+~quant=1/4;
 
 // ostinatos:
 ~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
