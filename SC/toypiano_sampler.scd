@@ -9,11 +9,11 @@ Thanks to BobRob and Anne Veinberg for Recording this
 {
 // load the custom toy piano samples
 b = ();
-~path = thisProcess.nowExecutingPath.dirname;
+~pathsamples = thisProcess.nowExecutingPath.dirname;
 s.sync;
 29.do{|i|
   ~num = 36 + i;
-  b[i] = Buffer.read(s, ~path++"/TPSamples/"++~num++".wav");
+  b[i] = Buffer.read(s, ~pathsamples++"/TPSamples/"++~num++".wav");
 };
 s.sync;
 

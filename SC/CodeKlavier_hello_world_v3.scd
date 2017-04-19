@@ -34,7 +34,7 @@ s.sync;
 
 ~rand=Tdef(\randostinato, {
 var randrit = Pxrand([Pfuncn({1/(h*(1/2).rrand(4).round(0.5))}, 1), Pfuncn({1/(e*(1/2).rrand(4).round(0.5))},1), Pfuncn({1/(l*(1/2).rrand(4).round(0.5))},1)], inf);
-var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi].scramble;
+var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi].scramble;
 	Pdef(\ostinato1, {Pbind(\dur, randrit, \ctranspose, Pfunc{~pitch},
 \midinote, Pseq(randpitch, inf),
 \type, \midi, \midiout, m)})});
