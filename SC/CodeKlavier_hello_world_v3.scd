@@ -17,11 +17,6 @@ s.sync;
 ~quant=1/4;
 s.sync;
 // ostinatos:
-// random ostinatos
-~rand=Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
-\midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
-\type, \midi, \midiout, m)});
-s.sync;
 ~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
@@ -34,6 +29,11 @@ s.sync;
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
 ~ost2quant=~quant;
+s.sync;
+// random ostinatos
+~rand=Tdef(\randostinato, {Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
+\midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
+\type, \midi, \midiout, m)})});
 s.sync;
 // hello pulse
 ~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m)});
