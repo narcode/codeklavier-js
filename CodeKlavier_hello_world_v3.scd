@@ -34,7 +34,7 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 ~ost2quant=~quant;
 
 // random ostinatos
-~rand=Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
+~rand=Pdef(\ostinato1R, {Pbind(\dur, Pxrand([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
 
