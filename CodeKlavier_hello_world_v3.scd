@@ -1,24 +1,21 @@
 // midi mappings:
-
-s.boot;
-
-MIDIIn.connectAll;
-
-/*MIDIdef.noteOn(\test, {arg ...args;
-	args.postln;
-});*/
-
+s.waitForBoot({
+	"starting MIDI...".postln;
+	MIDIIn.connectAll;
+s.sync;
 MIDIClient.init;
+s.sync;
 MIDIIn.connectAll;
+s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
-
+s.sync;
 // hello world \\
 (
+"setting variables adn ostinatos...".postln;
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
-
 // adjust the quant;
 ~quant=1/4;
-
+s.sync;
 // ostinatos:
 ~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
@@ -32,12 +29,12 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
 ~ost2quant=~quant;
-
+s.sync;
 // random ostinatos
 ~rand=Pdef(\ostinato1R, {Pbind(\dur, Pxrand([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)});
-
+s.sync;
 // hello pulse
 ~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m)});
 ~hello.quant=~quant;
@@ -45,17 +42,13 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 ~hello2.quant=~quant;
 ~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m)});
 ~hello3.quant=~quant;
-
+s.sync;
 ~hello2.quant=~quant;
-~h1o=0;
-~h2o=0;
-~h3o=0;
-
-
+~h1o=~h2o=~h3o=0;
+s.sync;
 h=e=l=o=w=d=a=r=n=1;
-
 ~p = 1; // ????
-
+s.sync;
 ~reset = Tdef(\reset, {1.do{h=e=l=o=w=d=a=r=n=1; t.tempo=1;
 	~h1o=~h2o=~h30=0;
 	~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
@@ -69,11 +62,11 @@ h=e=l=o=w=d=a=r=n=1;
 	\type, \midi, \midiout, m)});
 		}
 	});
-)
-
-
-/// re-pitching:
+	s.sync;
+);
 (
+	"starting routine for re-pitching with piano pedal...".postln;
+	/// re-pitching:
 SkipJack({
 	/*var key = "narcode".scramble;
 Tdef(key.asSymbol, {*/
@@ -172,6 +165,10 @@ MIDIdef.cc(\pedalpitchd2).free;
 	};
 }; }, 1, name: "pedalwatch");
 );
+s.sync;
+"CodeKlavier is ready and listening...".postln;
+}.fork;
+);
 
 /// if you want to stop the pedal watcher:
-SkipJack.stop("pedalwatch");
+/*SkipJack.stop("pedalwatch");*/
