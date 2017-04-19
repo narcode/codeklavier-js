@@ -34,7 +34,9 @@ s.sync;
 
 ~rand=Tdef(\randostinato, {
 var rit = (1/2).rrand(4).round(0.5);
-	Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/(h*rit)}, 1), Pfuncn({1/(e*rit)},1), Pfuncn({1/(l*rit)},1)], inf), \ctranspose, Pfunc{~pitch},
+var rit2 = (1/2).rrand(4).round(0.5);
+var rit3 = (1/2).rrand(4).round(0.5);
+	Pdef(\ostinato1, {Pbind(\dur, Pxrand([Pfuncn({1/(h*rit)}, 1), Pfuncn({1/(e*rit2)},1), Pfuncn({1/(l*rit3)},1)], inf), \ctranspose, Pfunc{~pitch},
 \midinote, Pxrand(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \midiout, m)})});
 s.sync;
