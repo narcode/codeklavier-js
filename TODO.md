@@ -12,3 +12,4 @@
 - make toypiano sampler in SuperCollider  -> DONE
 - the SC sampler shoots error now when i go ~down where the one note is below range. Do you like the way this looks? It just messed up the post script. Also, when I go too fast I get a lots of errors in post script... -> DONE
 - Now i've lost the bottom Ab. Can you read it so ~h10=0-1 will work. Thanks
+- if setting variables to 0 (like h=0) then the ostinato stops. But if you try to then change it back to another number, the ostinato doesn't restart
