@@ -1,6 +1,6 @@
 # Code Klavier
 live coding with the piano as interface
 
-An open-source project of Anne Veinberg & Felipe Ignacio Noriega
+An open-source project of Felipe Ignacio Noriega & Anne Veinberg 
 
 # This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
