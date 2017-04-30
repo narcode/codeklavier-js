@@ -1,5 +1,5 @@
 # Code Klavier
-Official CodeKlavier repository - live coding with the piano as interface
+live coding with the piano as interface
 
 An open-source project of Anne Veinberg & Felipe Ignacio Noriega
 
