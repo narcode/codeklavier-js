@@ -3,6 +3,7 @@ live coding with the piano as interface
 
 An open-source project of Anne Veinberg & Felipe Ignacio Noriega
 
-# This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
+GitHub page: https://narcode.github.io/codeklavier/
 
-More info soon...
+
+# This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
