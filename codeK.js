@@ -12,7 +12,7 @@ input.on('message', function(deltaTime, msg) {
 
   //console.log('note:' + msg[1]);
 
-if (msg[1] == 145) {
+if (msg[2] > 0) {
 
 if (msg[0] == 144) {
 switch (msg[1]) {
