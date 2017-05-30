@@ -17,3 +17,6 @@ The codeklavier development adventure has just begun (March-April 2017). This is
 <div>The short term goal:</div><div>research-release-evaluation cycles of prototypes which tackle specific aspects of the system</div></div>
 
 # This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
+
+1) Install node.js
+2)
