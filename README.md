@@ -19,5 +19,5 @@ The codeklavier development adventure has just begun (March-April 2017). This is
 # This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
 
 1) Install node.js
-2) ...
-3) ...
+2) Install Robotjs
+3) npm dependencies
