@@ -43,14 +43,6 @@ var ignore = false;
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-if (chromatic.indexOf(msg[1]) == -1) {
-  if (chromatic.indexOf(msg[1]) > -1) {
-    console.log('chromatic motif still playing');
-  } else {
-    ignore = false;
-  }
-}
-
    if (regtest != null) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
@@ -66,6 +58,8 @@ chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);
      if (index > -1) {
        motifs.splice(index,1);
+     } else {
+       ignore = false;
      }
    });
 }
