@@ -49,9 +49,7 @@ if (chromatic.indexOf(msg[1]) > -1) {
     console.log(deltaTime);
     ignore = false;
   }
-} else {
-  ignore = false;
-};
+}
 
    if (regtest != null) {
    if (regtest.length > 0) {
