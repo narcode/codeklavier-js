@@ -27,11 +27,21 @@ var array = this.memory;
   array.push(block);
   console.log(array);
 
-  if (array.length > 4) {
-    this.memory.slice(-4);
-    console.log("array too big!");
+  if (array.length > 8) {
+    this.memory = array.slice(-8);
+    // console.log("memory full");
   }
 };
+
+function countNotes(array, note) {
+  var count = 0;
+  for (i=0; i<array.length; i++) {
+    if (array[i] == note) {
+      count++;
+    }
+  }
+  return count;
+}
 
 var memory = new Mem4block();
 
@@ -41,6 +51,9 @@ var memory = new Mem4block();
    // motifs.push(msg[1]);
    if (msg[0] == 155 && msg[2] > 0) {
      memory.memorize(msg[1]);
+
+console.log(countNotes(memory.memory, msg[1]));
+
    }
 
  });
