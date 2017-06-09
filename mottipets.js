@@ -44,7 +44,11 @@ var ignore = false;
   //  var match = regpattern.exec(motifsString);
 
 if (chromatic.indexOf(msg[1]) == -1) {
+  chromatic.indexOf(msg[1]) > -1 {
+    console.log('chromatic motif still playing');
+  } else {
     ignore = false;
+  }
 }
 
    if (regtest != null) {
