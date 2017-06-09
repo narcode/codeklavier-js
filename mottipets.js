@@ -29,6 +29,7 @@ var ignore = false;
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
+
    // motifs.push(msg[1]);
    if (msg[0] == 155 && msg[2] > 0) {
    console.log(motifs);
@@ -48,6 +49,8 @@ if (chromatic.indexOf(msg[1]) > -1) {
     console.log(deltaTime);
     ignore = false;
   }
+} else {
+  ignore = false;
 };
 
    if (regtest != null) {
