@@ -42,6 +42,8 @@ var ignore = false;
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
+console.log(chromatic.indexOf(msg[2]));
+
    if (regtest != null) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
@@ -53,14 +55,12 @@ var ignore = false;
    }
 
 if (ignore == true) {
-  if (deltaTime < 1) {
 chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);
      if (index > -1) {
        motifs.splice(index,1);
      }
    });
- }
 }
 
  });
