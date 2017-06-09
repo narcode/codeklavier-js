@@ -43,8 +43,7 @@ var ignore = false;
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-if (chromatic.indexOf(msg[1]) > -1 && deltaTime > 1) {
-    console.log(deltaTime);
+if (chromatic.indexOf(msg[1]) == -1) {
     ignore = false;
 }
 
