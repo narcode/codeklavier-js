@@ -42,7 +42,11 @@ var ignore = false;
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-console.log(chromatic.indexOf(msg[2]));
+if (chromatic.indexOf(msg[2]) > -1) {
+  if (deltaTime > 1) {
+    ignore = false;
+  }
+};
 
    if (regtest != null) {
    if (regtest.length > 0) {
