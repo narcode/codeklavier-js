@@ -48,12 +48,16 @@ var ignore = false;
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
    // ignore or listen to motif based on delta time?
+   if (chromatic.indexOf(msg[1]) > -1) {
+     console.log('keep ignoring');
+   } else {
+     console.log('time to notice!');
+   }
  ignore = true;
 //motifs.splice();
      }
    }
 
-if (chromatic.indexOf(msg[1]) > -1) {
 if (ignore == true) {
 chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);
@@ -61,10 +65,6 @@ chromatic.forEach( (elem)=>{
        motifs.splice(index,1);
      }
    });
-}
-
-} else {
-  ignore = false;
 }
 
  });
