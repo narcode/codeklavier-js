@@ -42,7 +42,7 @@ var ignore = false;
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-if (deltaTime > 1) {
+if (deltaTime < 1) {
    if (regtest != null) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
