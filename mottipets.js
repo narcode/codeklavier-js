@@ -46,20 +46,21 @@ var ignore = false;
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
-
-   // ignore or listen to motif based on deltatime:
-   if (deltaTime < 1) { ignore = true; } else { ignore = false}
+   // ignore or listen to motif based on delta time?
+ ignore = true;
 //motifs.splice();
      }
    }
 
 if (ignore == true) {
+  if (deltaTime < 1) {
 chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);
      if (index > -1) {
        motifs.splice(index,1);
      }
    });
+ }
 }
 
  });
