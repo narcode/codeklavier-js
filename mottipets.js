@@ -25,7 +25,7 @@ var motifs = [];
 
 var chromatic = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
 // var motifs = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
-var filter = false;
+var ignore = false;
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
@@ -41,16 +41,21 @@ var filter = false;
 
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
+
+if (deltaTime > 1) {
    if (regtest != null) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
- filter = true;
+ ignore = true;
 //motifs.splice();
      }
    }
+ } else {
+   ignore = false;
+ }
 
-if (filter == true) {
+if (ignore == true) {
 chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);
      if (index > -1) {
