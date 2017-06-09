@@ -43,7 +43,9 @@ var ignore = false;
   //  var match = regpattern.exec(motifsString);
 
 if (chromatic.indexOf(msg[2]) > -1) {
+  console.log('matches note...');
   if (deltaTime > 1) {
+    console.log(deltaTime);
     ignore = false;
   }
 };
