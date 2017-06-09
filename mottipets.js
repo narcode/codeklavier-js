@@ -53,15 +53,18 @@ var ignore = false;
      }
    }
 
+if (chromatic.indexOf(msg[1]) > -1) {
 if (ignore == true) {
 chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);
      if (index > -1) {
        motifs.splice(index,1);
-     } else {
-       ignore = false;
      }
    });
+}
+
+} else {
+  ignore = false;
 }
 
  });
