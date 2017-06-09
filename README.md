@@ -1,4 +1,4 @@
-# CodeKlavier (no robot toypiano branch)
+# CodeKlavier (mottipets branch)
 
 programming with the piano as interface
 
