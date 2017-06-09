@@ -42,18 +42,16 @@ var ignore = false;
    var regtest = motifsString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-if (deltaTime < 1) {
    if (regtest != null) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
- ignore = true;
+
+   // ignore or listen to motif based on deltatime:
+   if (deltaTime < 1) { ignore = true; } else { ignore = false}
 //motifs.splice();
      }
    }
- } else {
-   ignore = false;
- }
 
 if (ignore == true) {
 chromatic.forEach( (elem)=>{
