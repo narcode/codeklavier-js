@@ -106,6 +106,8 @@ premotifmem.memorize(msg[1], chromatic.length*2);
    }
 
 if (deltaTime > 1 || prememtest === null) {
+  console.log("MATCH -> " + prememtest);
+
   ignore = false;
   motifmem.memory = []; // make this a method too...
 }
