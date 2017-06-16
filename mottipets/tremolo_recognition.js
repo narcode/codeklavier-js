@@ -60,7 +60,15 @@ if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
-robot.typeString('~tremolo = ' + interval);
+var oldinterval = interval;
+
+if (oldinterval == oldinterval) {
+  console.log("no change...");
+} else {
+  console.log("new interval...");
+}
+
+// robot.typeString('~tremolo = ' + interval);
 
 } // tremolo fi
 
