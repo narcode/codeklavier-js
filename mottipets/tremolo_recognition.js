@@ -67,12 +67,13 @@ intervalmem.memorize(interval, 2, true);
 
 intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total - sum});
 
-console.log("sum -> " + intervalsum);
+// console.log("sum -> " + intervalsum);
 
 if (intervalsum == 0) {
-  console.log("no change...");
+  // console.log("no change...");
 } else {
-  console.log("new interval...");
+  // console.log("new interval...");
+  robot.typeString('~tremolo = ' + interval);
 }
 
 // robot.typeString('~tremolo = ' + interval);
