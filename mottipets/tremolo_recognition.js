@@ -67,9 +67,9 @@ intervalmem.memorize(interval, 2, true);
 
 intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total - sum});
 
-// console.log("sum -> " + intervalsum);
+console.log("sum -> " + intervalsum);
 
-if (intervalsum == interval) {
+if (intervalsum == 0) {
   console.log("no change...");
 } else {
   console.log("new interval...");
