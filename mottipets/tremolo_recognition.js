@@ -54,11 +54,11 @@ var memory = new Mem4block();
 
 var listen = countNotes(memory.memory, msg[1]);
 
-// console.log(listen);
+console.log(listen);
 
-if (listen > 3) { // tremolo = 4
+if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
-console.log(interval);
+console.log("interval -> " interval);
 }
 
 
