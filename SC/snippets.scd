@@ -42,3 +42,6 @@ Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.per
 (1/~rit2.next).wait;
 }
   }).play;
+
+
+///
