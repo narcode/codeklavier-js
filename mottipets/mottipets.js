@@ -71,10 +71,6 @@ var intervalmem = new Mem4block();
    if (msg[0] == 155 && msg[2] > 0) {
    console.log(motifs);
    motifs.push(msg[1]);
-
-   // tremolo
-   memory.memorize(motifs[motifs.length-1], 8);
-   var listen = countNotes(memory.memory, msg[1]);
    }
 
    motifsString = motifs.join();
@@ -111,7 +107,12 @@ chromatic.forEach( (elem)=>{
 }
 
 // chain to tremolo recognition:
-// motifs.push(msg[1])
+// motifs.push(msg[1]);
+if (msg[0] == 155 && msg[2] > 0) {
+
+memory.memorize(motifs[motifs.length-1], 8);
+
+var listen = countNotes(memory.memory, msg[1]);
 
 console.log("no. of repeated noted -> " + listen);
 
@@ -136,6 +137,7 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 // robot.typeString('~tremolo = ' + interval);
   } // > 0 fi=
 } // tremolo fi
+}
 
  });
 
