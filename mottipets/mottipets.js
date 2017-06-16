@@ -64,6 +64,7 @@ function countNotes(array, note) {
 var memory = new Mem4block();
 var intervalmem = new Mem4block();
 var motifmem = new Mem4block();
+var premotifmem = new Mem4block();
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
@@ -73,15 +74,20 @@ var motifmem = new Mem4block();
   //  console.log(motifs);
 
 motifmem.memorize(msg[1], 88, true);
+if (msg[1] > chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
+premotifmem.memorize(msg[1], chromatic.length);
+}
   //  motifs.push(msg[1]);
    }
 
   //  motifsString = motifs.join();
   motifsString = motifmem.memory.join();
-   chromaticString = chromatic.join();
-   regpattern = new RegExp(chromaticString);
+  prememString = premotifmem.memory.join();
+  chromaticString = chromatic.join();
+  regpattern = new RegExp(chromaticString);
 
    var regtest = motifsString.match(chromaticString);
+   var prememtest = prememString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
    if (regtest != null) {
@@ -96,7 +102,7 @@ motifmem.memorize(msg[1], 88, true);
      }
    }
 
-if (deltaTime > 1) {
+if (deltaTime > 1 || prememtest == null) {
   ignore = false;
   motifmem.memory = []; // make this a method too...
 }
