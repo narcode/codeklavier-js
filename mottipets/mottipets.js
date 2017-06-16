@@ -66,7 +66,7 @@ chromatic.forEach( (elem)=>{
      }
    });
 
-robotjs.typeString('{}');
+robot.typeString('{}');
 
 }
 
