@@ -63,17 +63,21 @@ function countNotes(array, note) {
 
 var memory = new Mem4block();
 var intervalmem = new Mem4block();
+var motifmem - new Mem4block();
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
 
    // motifs.push(msg[1]);
    if (msg[0] == 155 && msg[2] > 0) {
-   console.log(motifs);
-   motifs.push(msg[1]);
+  //  console.log(motifs);
+
+motifmem.memorize(msg[1], 88, true);
+  //  motifs.push(msg[1]);
    }
 
-   motifsString = motifs.join();
+  //  motifsString = motifs.join();
+  motifsString = motifmem.memory.join();
    chromaticString = chromatic.join();
    regpattern = new RegExp(chromaticString);
 
@@ -94,14 +98,16 @@ var intervalmem = new Mem4block();
 
 if (deltaTime > 1) {
   ignore = false;
-  motifs = [];
+  motifmem.memory = []; // make this a method too...
 }
 
 if (ignore == true) {
 chromatic.forEach( (elem)=>{
-     var index = motifs.indexOf(elem);
+    //  var index = motifs.indexOf(elem);
+    var index = motifmem.memory.indexOf(elem);
      if (index > -1) {
-       motifs.splice(index,1);
+      //  motifs.splice(index,1);
+      motifmem.memory.splice(index, 1);
      }
    });
 }
