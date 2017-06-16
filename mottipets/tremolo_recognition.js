@@ -52,11 +52,24 @@ var memory = new Mem4block();
    if (msg[0] == 155 && msg[2] > 0) {
      memory.memorize(msg[1]);
 
-console.log(countNotes(memory.memory, msg[1]));
+var listen = countNotes(memory.memory, msg[1]);
+
+console.log(listen);
+
+if (listen > 3) { // tremolo = 4
+  console.log(memory.memory[0]);
+  console.log(memory.memory[1]);
+}
+
 
    }
 
  });
+
+
+ //TODO: - recognize interval of the tremolo and use that number for a paramater
+
+
 
 /// tests debug:
 // motifsString = motifs.join();
