@@ -25,7 +25,7 @@ Mem4block.prototype.memorize = function (block) {
 var array = this.memory;
 
   array.push(block);
-  console.log(array);
+  // console.log(array);
 
   if (array.length > 8) {
     this.memory = array.slice(-8);
@@ -56,16 +56,18 @@ var listen = countNotes(memory.memory, msg[1]);
 
 console.log("no. of repeated noted -> " + listen);
 
+interval = Math.abs(memory.memory[0] - memory.memory[1]);
+var oldinterval = interval;
+
 if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
-var oldinterval = interval;
-
-if (oldinterval == oldinterval) {
+if (oldinterval == interval) {
   console.log("no change...");
 } else {
   console.log("new interval...");
+  oldinterval = interval;
 }
 
 // robot.typeString('~tremolo = ' + interval);
