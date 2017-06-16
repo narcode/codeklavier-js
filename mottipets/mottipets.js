@@ -117,6 +117,7 @@ if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
+if (interval > 0) {
 intervalmem.memorize(interval, 2, true);
 
 intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total - sum});
@@ -132,9 +133,9 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 
 // robot.typeString('~tremolo = ' + interval);
+} // > 0 fi
 
 } // tremolo fi
-
 
 }
 
