@@ -65,12 +65,12 @@ console.log("interval -> " + interval);
 
 intervalmem.memorize(msg[1], 2, true);
 
-if (oldinterval == interval) {
-  console.log("no change...");
-} else {
-  console.log("new interval...");
-  oldinterval = interval;
-}
+// if (oldinterval == interval) {
+//   console.log("no change...");
+// } else {
+//   console.log("new interval...");
+//   oldinterval = interval;
+// }
 
 // robot.typeString('~tremolo = ' + interval);
 
