@@ -57,8 +57,8 @@ var listen = countNotes(memory.memory, msg[1]);
 console.log(listen);
 
 if (listen > 3) { // tremolo = 4
-  console.log(memory.memory[0]);
-  console.log(memory.memory[1]);
+interval = memory.memory[0] - memory.memory[1];
+console.log(interval);
 }
 
 
