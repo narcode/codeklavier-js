@@ -74,7 +74,7 @@ var premotifmem = new Mem4block();
   //  console.log(motifs);
 
 motifmem.memorize(msg[1], 88, true);
-if (msg[1] >= chromatic[0] || msg[1] < chromatic[chromatic.length-1]) {
+if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
 premotifmem.memorize(msg[1], chromatic.length*2, true);
 }
   //  motifs.push(msg[1]);
