@@ -75,7 +75,7 @@ var premotifmem = new Mem4block();
 
 motifmem.memorize(msg[1], 88, true);
 if (msg[1] >= chromatic[0] || msg[1] < chromatic[chromatic.length-1]) {
-premotifmem.memorize(msg[1], chromatic.length*2);
+premotifmem.memorize(msg[1], chromatic.length*2, true);
 }
   //  motifs.push(msg[1]);
    }
@@ -109,7 +109,7 @@ if (deltaTime > 1 || prememtest === null) {
   console.log("MATCH -> " + prememtest);
 
   ignore = false;
-  motifmem.memory = []; // make this a method too...
+  // motifmem.memory = []; // make this a method too...
 }
 
 if (ignore == true) {
