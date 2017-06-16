@@ -63,7 +63,7 @@ if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
-intervalmem.memorize(msg[1], 1, true);
+intervalmem.memorize(interval, 1, true);
 
 // if (oldinterval == interval) {
 //   console.log("no change...");
