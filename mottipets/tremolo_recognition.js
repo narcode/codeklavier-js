@@ -54,7 +54,6 @@ var intervalmem = new Mem4block();
    // motifs.push(msg[1]);
    if (msg[0] == 155 && msg[2] > 0) {
      memory.memorize(msg[1], 8);
-     intervalmem.memorize(interval, 1, true);
 
 var listen = countNotes(memory.memory, msg[1]);
 
@@ -63,6 +62,8 @@ console.log("no. of repeated noted -> " + listen);
 if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
+
+intervalmem.memorize(interval, 1, true);
 
 
 intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total+sum});
