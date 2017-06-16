@@ -63,7 +63,7 @@ function countNotes(array, note) {
 
 var memory = new Mem4block();
 var intervalmem = new Mem4block();
-var motifmem - new Mem4block();
+var motifmem = new Mem4block();
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
