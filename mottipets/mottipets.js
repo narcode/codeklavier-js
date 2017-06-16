@@ -90,7 +90,7 @@ premotifmem.memorize(msg[1], chromatic.length);
    var prememtest = prememString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-console.log(prememString);
+console.log("PREMEM -> " + prememString);
 
    if (regtest != null) {
    if (regtest.length > 0) {
