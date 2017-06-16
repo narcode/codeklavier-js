@@ -63,7 +63,9 @@ if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
-intervalmem.memorize(interval, 1, true);
+intervalsum = intervalmem.memorize(interval, 1, true).reduce( (total,sum)=> { return total+sum});
+
+console.log("sum -> " + intervalsum);
 
 // if (oldinterval == interval) {
 //   console.log("no change...");
