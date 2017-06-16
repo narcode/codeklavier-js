@@ -54,7 +54,7 @@ var memory = new Mem4block();
 
 var listen = countNotes(memory.memory, msg[1]);
 
-console.log(listen);
+console.log("no. of repeated noted -> " -> listen);
 
 if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
