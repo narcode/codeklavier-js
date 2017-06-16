@@ -66,7 +66,7 @@ console.log("interval -> " + interval);
 intervalmem.memorize(interval, 1, true);
 
 
-intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total+sum});
+intervalsum = intervalmem.memory.reduce( (total,sum)=> { return ParseInt(total) + ParseInt(sum)});
 
 console.log("sum -> " + intervalsum);
 
