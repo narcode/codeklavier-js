@@ -74,7 +74,7 @@ if (intervalsum == 0) {
 } else {
   // console.log("new interval...");
   robot.typeString('~tremolo = ' + interval);
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter'); 
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 
 // robot.typeString('~tremolo = ' + interval);
@@ -85,6 +85,7 @@ if (intervalsum == 0) {
 
  });
 
+exports.Mem4block = Mem4block();
 
  //TODO: - recognize interval of the tremolo and use that number for a paramater
 

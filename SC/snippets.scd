@@ -81,3 +81,27 @@ Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.per
 ~tremolo = 7
 ~tremolo = 5
 ~tremolo = 1
+
+~snippet2 = Tdef(\snippet2, { loop{ Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/~tremolo).wait;}}).play;
+~tremolo = 32
+~tremolo = 36
+~tremolo = 4
+~tremolo = 5
+~tremolo = 2
+~tremolo = 12
+~tremolo = 0
+~tremolo = 11
+~tremolo = 4
+
+~snippet2 = Tdef(\snippet2, { loop{ Ndef(~name.next, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/~tremolo).wait;}}).play;
+~tremolo = 30
+~tremolo = 7
+~tremolo = 6
+~tremolo = 4
+~tremolo = 2
+~tremolo = 5
+~tremolo = 3
+~tremolo = 2
+
+
+~name = Pseq([\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6], inf).asStream;
