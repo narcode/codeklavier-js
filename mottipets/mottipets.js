@@ -104,6 +104,7 @@ chromatic.forEach( (elem)=>{
        motifs.splice(index,1);
      }
    });
+}
 
 // chain to tremolo recognition:
 // motifs.push(msg[1]);
@@ -131,13 +132,9 @@ if (intervalsum == 0) {
 robot.typeString('~tremolo = ' + interval);
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
-
 // robot.typeString('~tremolo = ' + interval);
-} // > 0 fi
-
+  } // > 0 fi=
 } // tremolo fi
-
-}
 
  });
 
