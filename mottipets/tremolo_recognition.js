@@ -21,14 +21,16 @@ function Mem4block() {
 
 
 
-Mem4block.prototype.memorize = function (block) {
+Mem4block.prototype.memorize = function (block, length, debug) {
 var array = this.memory;
 
   array.push(block);
-  // console.log(array);
+  if (debug == true) {
+  console.log(array);
+}
 
-  if (array.length > 8) {
-    this.memory = array.slice(-8);
+  if (array.length > length) {
+    this.memory = array.slice(-length);
     // console.log("memory full");
   }
 };
@@ -44,24 +46,24 @@ function countNotes(array, note) {
 }
 
 var memory = new Mem4block();
+var intervalmem = new Mem4block();
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
 
    // motifs.push(msg[1]);
    if (msg[0] == 155 && msg[2] > 0) {
-     memory.memorize(msg[1]);
+     memory.memorize(msg[1], 8);
 
 var listen = countNotes(memory.memory, msg[1]);
 
 console.log("no. of repeated noted -> " + listen);
 
-interval = Math.abs(memory.memory[0] - memory.memory[1]);
-var oldinterval = interval;
-
 if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
+
+intervalmem.memorize(msg[1], 2, true);
 
 if (oldinterval == interval) {
   console.log("no change...");
