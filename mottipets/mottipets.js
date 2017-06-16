@@ -48,7 +48,7 @@ var ignore = false;
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
    robot.typeString('~snippet2 = Tdef(\\snippet2, { loop{ Ndef(\\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/~tremolo).wait;}}).play;');
-   robot.keyTap('enter', 'shift'); robot.keyTap('enter'); 
+   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    // ignore or listen to motif based on delta time?
  ignore = true;
 //motifs.splice();
