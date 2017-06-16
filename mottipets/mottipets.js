@@ -66,7 +66,13 @@ chromatic.forEach( (elem)=>{
      }
    });
 
-robot.typeString('{}');
+robot.typeString('~snippetest special charst2 = Tdef(\snippet2, {
+loop{
+Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);
+
+(1/~tremolo).wait;
+}
+  }).play;');
 
 }
 
