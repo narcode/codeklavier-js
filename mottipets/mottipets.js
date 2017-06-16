@@ -53,6 +53,11 @@ var ignore = false;
      }
    }
 
+if (deltaTime > 1) {
+  ignore = false;
+  motifs = [];
+}
+
 if (ignore == true) {
 chromatic.forEach( (elem)=>{
      var index = motifs.indexOf(elem);

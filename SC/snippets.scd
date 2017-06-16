@@ -38,10 +38,46 @@ r[2]=2
 
 ~snippet2 = Tdef(\snippet2, {
 loop{
-Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(1);
-(1/~rit2.next).wait;
+Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);
+
+(1/~tremolo).wait;
 }
   }).play;
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
+
+~tremolo = 1;
+
+~tremolo = 7
+~tremolo = 4
+~tremolo = 2
+~tremolo = 7
+
+~tremolo = 4
+
+~tremolo = 2
+~tremolo = 7
+~tremolo = 4
+~tremolo = 5
+~tremolo = 7
+~tremolo = 5
+~tremolo = 7
+~tremolo = 2
+~tremolo = 9
+~tremolo = 2
+~tremolo = 1
+~tremolo = 12
+~tremolo = 14
+~tremolo = 19
+~tremolo = 2
+~tremolo = 19
+~tremolo = 12
+~tremolo = 1
+~tremolo = 2
+~tremolo = 4
+~tremolo = 2
+~tremolo = 5
+~tremolo = 7
+~tremolo = 5
+~tremolo = 1
