@@ -90,8 +90,8 @@ premotifmem.memorize(msg[1], chromatic.length*2);
    var prememtest = prememString.match(chromaticString);
   //  var match = regpattern.exec(motifsString);
 
-console.log("PREMEM -> " + prememString);
-console.log("MATCH -> " + prememtest);
+// console.log("PREMEM -> " + prememString);
+// console.log("MATCH -> " + prememtest);
 
    if (regtest != null) {
    if (regtest.length > 0) {
@@ -105,7 +105,7 @@ console.log("MATCH -> " + prememtest);
      }
    }
 
-if (deltaTime > 1) {
+if (deltaTime > 1 || prememtest === null) {
   ignore = false;
   motifmem.memory = []; // make this a method too...
 }
