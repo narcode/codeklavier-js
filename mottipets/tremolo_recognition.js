@@ -60,10 +60,8 @@ if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
-switch (interval) {
-  case 102: robot.typeString('~tremolo = ' + interval); break;
-  default: '';
-  }
+robot.typeString('~tremolo = ' + interval);
+
 } // tremolo fi
 
    }
