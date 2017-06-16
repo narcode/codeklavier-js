@@ -58,7 +58,7 @@ console.log(listen);
 
 if (listen == 4) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
-console.log("interval -> " interval);
+console.log("interval -> " + interval);
 }
 
 
