@@ -105,7 +105,7 @@ premotifmem.memorize(msg[1], chromatic.length*2, true);
      }
    }
 
-if (deltaTime > 1) {
+if (deltaTime > 1 || prememtest == null) {
   console.log("MATCH -> " + prememtest);
 
   ignore = false;
