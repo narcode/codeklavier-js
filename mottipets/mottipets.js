@@ -75,7 +75,7 @@ var premotifmem = new Mem4block();
 
 motifmem.memorize(msg[1], 88, true);
 if (msg[1] >= chromatic[0] || msg[1] < chromatic[chromatic.length-1]) {
-premotifmem.memorize(msg[1], chromatic.length);
+premotifmem.memorize(msg[1], chromatic.length*2);
 }
   //  motifs.push(msg[1]);
    }
@@ -91,7 +91,7 @@ premotifmem.memorize(msg[1], chromatic.length);
   //  var match = regpattern.exec(motifsString);
 
 console.log("PREMEM -> " + prememString);
-console.log(prememtest);
+console.log("MATCH -> " + prememtest);
 
    if (regtest != null) {
    if (regtest.length > 0) {
