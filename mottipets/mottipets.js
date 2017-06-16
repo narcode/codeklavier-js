@@ -116,7 +116,7 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == 155 && msg[2] > 0) {
 
-memory.memorize(motifs[motifmem.memory.length-1], 8);
+memory.memorize(motifmem.memory[motifmem.memory.length-1], 8);
 
 var listen = countNotes(memory.memory, msg[1]);
 
