@@ -44,4 +44,4 @@ Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.per
   }).play;
 
 
-///
+/// RECOGNIZING ANNE's TREMOLOS:

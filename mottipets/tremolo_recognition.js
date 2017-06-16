@@ -74,6 +74,7 @@ if (intervalsum == 0) {
 } else {
   // console.log("new interval...");
   robot.typeString('~tremolo = ' + interval);
+  robot.keyTap('enter'); 
 }
 
 // robot.typeString('~tremolo = ' + interval);
