@@ -105,14 +105,14 @@ premotifmem.memorize(msg[1], chromatic.length*2, true);
      }
    }
 
-// if (deltaTime > 1 || prememtest == null) {
-//   console.log("MATCH -> " + prememtest);
-//
-//   ignore = false;
-//   if (motifmem.memory.length > 87) {
-//   motifmem.memory = []; // make this a method too...
-//   }
-// }
+if (deltaTime > 1 || prememtest == null) {
+  console.log("MATCH -> " + prememtest);
+
+  ignore = false;
+  if (motifmem.memory.length > 87) {
+  motifmem.memory = []; // make this a method too...
+  }
+}
 
 if (ignore == true) {
 chromatic.forEach( (elem)=>{
