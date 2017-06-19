@@ -15,6 +15,7 @@ r = ();
 ~topR = 8590;
 ~rit2 = 1;
 ~name = Pseq([\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6],inf).asStream;
+~tremolo = 1;
 
 ~snippet1 = Tdef(\snippet1, {
 loop{
@@ -31,8 +32,6 @@ r[4]=7
 r[2]=2
 
 
-
-
 ~snippet1.stop;
 
 
@@ -46,4 +45,3 @@ Ndef(\pulse2, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.per
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
-~snippet2 = Tdef(\snippet2, { loop{ Ndef(~name.next, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/~tremolo).wait;}}).play;
