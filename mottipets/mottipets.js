@@ -25,6 +25,10 @@ var motifs = [];
 
 var chromatic = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
 // var motifs = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
+var pianosectons = [47, 78, 108];
+
+var miniM1M = [60,67,68,63,62];
+
 var ignore = false;
 
 function Mem4block() {
@@ -37,12 +41,12 @@ function Mem4block() {
 
 
 
-Mem4block.prototype.memorize = function (block, length, debug) {
+Mem4block.prototype.memorize = function (block, length, debug, debugname) {
 var array = this.memory;
 
   array.push(block);
   if (debug == true) {
-  console.log(array);
+  console.log(debugname + ' -> ' + array);
 }
 
   if (array.length > length) {
@@ -64,20 +68,37 @@ function countNotes(array, note) {
 var memory = new Mem4block();
 var intervalmem = new Mem4block();
 var motifmem = new Mem4block();
-var premotifmem = new Mem4block();
+var premotifmem = new Mem4block(); // debug!
+var minimotifsL = new Mem4block();
+var minimotifsM = new Mem4block();
+var minimotifsH = new Mem4block();
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
    // motifs.push(msg[1]);
-   if (msg[0] == 152 && msg[2] > 0) {
+   if (msg[0] == 152 && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);
 
-motifmem.memorize(msg[1], 88, true);
+motifmem.memorize(msg[1], 20);
 if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
-premotifmem.memorize(msg[1], chromatic.length*2, true);
+premotifmem.memorize(msg[1], chromatic.length*1);
 }
-  //  motifs.push(msg[1]);
-   }
+
+if (msg[1] <= pianosectons[0]) {
+minimotifsL.memorize(msg[1], 20);
+} else if (msg[1] <= pianosectons[1]) {
+minimotifsM.memorize(msg[1], 20, true, 'miniM');
+} else if (msg[1] > pianosectons[1]) {
+minimotifsH.memorize(msg[1], 20);
+}
+
+   } // fi
+
+// check if motive exists:
+if (minimotifsM.memory.includes(miniM1M[0] && minimotifsM.memory.includes(miniM1M[1]
+&& minimotifsM.memory.includes(miniM1M[2] && minimotifsM.memory.includes(miniM1M[3]) {
+  console.log("motif present!");
+}
 
   //  motifsString = motifs.join();
   motifsString = motifmem.memory.join();
@@ -104,6 +125,8 @@ premotifmem.memorize(msg[1], chromatic.length*2, true);
      }
    }
 
+
+
 if (deltaTime > 1) {
   console.log("MATCH -> " + prememtest);
 
@@ -128,18 +151,18 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == 152 && msg[2] > 0) {
 
-memory.memorize(motifmem.memory[motifmem.memory.length-1], 8);
+memory.memorize(motifmem.memory[motifmem.memory.length-1], 3);
 
 var listen = countNotes(memory.memory, msg[1]);
 
 console.log("no. of repeated noted -> " + listen);
 
-if (listen == 4) { // tremolo = 4
+if (listen == 2) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
 console.log("interval -> " + interval);
 
 if (interval > 0) {
-intervalmem.memorize(interval, 2, true);
+intervalmem.memorize(interval, 2);
 
 intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total - sum});
 
