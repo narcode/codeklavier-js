@@ -73,6 +73,9 @@ var minimotifsL = new Mem4block();
 var minimotifsM = new Mem4block();
 var minimotifsH = new Mem4block();
 
+// counters:
+var mmotifcount = 0;
+
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
    // motifs.push(msg[1]);
@@ -87,17 +90,29 @@ premotifmem.memorize(msg[1], chromatic.length*1);
 if (msg[1] <= pianosectons[0]) {
 minimotifsL.memorize(msg[1], 20);
 } else if (msg[1] <= pianosectons[1]) {
-minimotifsM.memorize(msg[1], 20, true, 'miniM');
+minimotifsM.memorize(msg[1], 20);
 } else if (msg[1] > pianosectons[1]) {
 minimotifsH.memorize(msg[1], 20);
 }
 
    } // fi
 
-// check if motive exists:
+// check if notes exists:
 if (minimotifsM.memory.includes(miniM1M[0]) && minimotifsM.memory.includes(miniM1M[1])
-&& minimotifsM.memory.includes(miniM1M[2]) && minimotifsM.memory.includes(miniM1M[3])) {
-  console.log("motif present!");
+&& minimotifsM.memory.includes(miniM1M[2]) && minimotifsM.memory.includes(miniM1M[3]) &&
+minimotifsM.memory.includes(miniM1M[4])) {
+  // check if they are in the right order:
+if (minimotifsM.memory.indexOf(miniM1M[0]) < minimotifsM.memory.indexOf(miniM1M[1]) &&
+minimotifsM.memory.indexOf(miniM1M[1]) < minimotifsM.memory.indexOf(miniM1M[2]) &&
+minimotifsM.memory.indexOf(miniM1M[2]) < minimotifsM.memory.indexOf(miniM1M[3]) &&
+minimotifsM.memory.indexOf(miniM1M[3]) < minimotifsM.memory.indexOf(miniM1M[4])) {
+  mmotifcount++;
+  if (mmotifcount === 1) {
+  console.log("motif mapped! --> " + mmotifcount + ' times...');
+  robot.typeString('Ndef(\\pulse2).map(\\pitch, Ndef(\\krm1, {~tremolo.linlin(1, 16, 200, 3000)}));');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
+  }
 }
 
   //  motifsString = motifs.join();
@@ -117,7 +132,7 @@ if (minimotifsM.memory.includes(miniM1M[0]) && minimotifsM.memory.includes(miniM
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
-   robot.typeString('~snippet2 = Tdef(\\snippet2, { loop{ Ndef(~name.next, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/~tremolo).wait;}}).play;');
+   robot.typeString('~snippet2 = Tdef(\\snippet2, { loop{ Ndef(~name.next, {|pitch=400| SinOsc.ar(456*LFTri.kr(88).range(300, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/1).wait;}}).play;');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    // ignore or listen to motif based on delta time?
  ignore = true;
@@ -155,11 +170,11 @@ memory.memorize(motifmem.memory[motifmem.memory.length-1], 3);
 
 var listen = countNotes(memory.memory, msg[1]);
 
-console.log("no. of repeated noted -> " + listen);
+// console.log("no. of repeated noted -> " + listen);
 
 if (listen == 2) { // tremolo = 4
 interval = Math.abs(memory.memory[0] - memory.memory[1]);
-console.log("interval -> " + interval);
+// console.log("interval -> " + interval);
 
 if (interval > 0) {
 intervalmem.memorize(interval, 2);
