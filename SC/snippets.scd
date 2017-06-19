@@ -13,7 +13,9 @@ r = ();
 ~topR = 3000;
 ~rit2 = 1;
 ~name = Pseq([\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6],inf).asStream;
-~tremolo = 1;
+~tremoloM = 1;
+~tremoloH = 1;
+~rit = 1;
 
 ~snippet1 = Tdef(\snippet1, {
 loop{
@@ -41,8 +43,7 @@ Ndef(\pulse2, {|pitch=400| SinOsc.ar(456*LFTri.kr(88).range(300, pitch)) * EnvGe
 }
   }).play;
 
-
-Ndef(\pulse2).map(\pitch, Ndef(\krm1));
+[\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6].do{|i| Ndef(i).map(\pitch, Ndef(\krm1));}
 
 Ndef(\pulse2).map(\pitch, 400);
 
@@ -50,10 +51,14 @@ Ndef(\pulse2).map(\pitch, 400);
 //loop listener?
 Tdef(\listenerkr, {
   loop{
-    Ndef(\krm1, {~tremolo.linlin(1, 16, 200, 3000)});
+    Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 3000)}); // pitch
+    /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
+    Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
     0.5.wait;
     }
   }).play
 
+  Tdef(\snippet2).set(\rit,1);
+
+
 /// RECOGNIZING ANNE's TREMOLOS:
-s.boot;
