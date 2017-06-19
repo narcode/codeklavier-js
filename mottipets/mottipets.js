@@ -68,9 +68,8 @@ var premotifmem = new Mem4block();
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
-
    // motifs.push(msg[1]);
-   if (msg[0] == 155 && msg[2] > 0) {
+   if (msg[0] == 152 && msg[2] > 0) {
   //  console.log(motifs);
 
 motifmem.memorize(msg[1], 88, true);
@@ -127,7 +126,7 @@ chromatic.forEach( (elem)=>{
 
 // chain to tremolo recognition:
 // motifs.push(msg[1]);
-if (msg[0] == 155 && msg[2] > 0) {
+if (msg[0] == 152 && msg[2] > 0) {
 
 memory.memorize(motifmem.memory[motifmem.memory.length-1], 8);
 
@@ -154,8 +153,8 @@ robot.typeString('~tremolo = ' + interval);
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 // robot.typeString('~tremolo = ' + interval);
-  } // > 0 fi=
-} // tremolo fi
+    } // > 0 fi=
+  } // tremolo fi
 }
 
  });

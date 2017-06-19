@@ -4,8 +4,6 @@ snippets for Mottipets
 
 */
 
-
-
 // snippet 1: beat
 (
 r = ();
