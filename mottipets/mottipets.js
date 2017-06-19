@@ -95,8 +95,8 @@ minimotifsH.memorize(msg[1], 20);
    } // fi
 
 // check if motive exists:
-if (minimotifsM.memory.includes(miniM1M[0] && minimotifsM.memory.includes(miniM1M[1]
-&& minimotifsM.memory.includes(miniM1M[2] && minimotifsM.memory.includes(miniM1M[3]) {
+if (minimotifsM.memory.includes(miniM1M[0]) && minimotifsM.memory.includes(miniM1M[1])
+&& minimotifsM.memory.includes(miniM1M[2]) && minimotifsM.memory.includes(miniM1M[3])) {
   console.log("motif present!");
 }
 
