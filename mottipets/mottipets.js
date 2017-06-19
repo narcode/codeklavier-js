@@ -65,6 +65,23 @@ function countNotes(array, note) {
   return count;
 }
 
+function minimotifSearch(array, elementsArray) {
+  var itemcount = 0;
+  for (i=0; i<elementsArray.length; i++) {
+if (array.indexOf(elementsArray[i]) > -1) {
+itemcount++
+console.log("item count: " + itemcount);
+}
+
+if (itemcount == elementsArray.length) {
+  console.log("motif present");
+}
+
+  }
+}
+
+minimotifSearch([1,2,3,4,5,6,7], [2,19,4]);
+
 var memory = new Mem4block();
 var intervalmem = new Mem4block();
 var motifmem = new Mem4block();
@@ -109,7 +126,7 @@ minimotifsM.memory.indexOf(miniM1M[3]) < minimotifsM.memory.indexOf(miniM1M[4]))
   mmotifcount++;
   if (mmotifcount === 1) {
   console.log("motif mapped! --> " + mmotifcount + ' times...');
-  robot.typeString('Ndef(\\pulse2).map(\\pitch, Ndef(\\krm1, {~tremolo.linlin(1, 16, 200, 3000)}));');
+  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
   }
