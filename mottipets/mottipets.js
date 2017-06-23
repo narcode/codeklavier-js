@@ -118,11 +118,11 @@ premotifmem.memorize(msg[1], chromatic.length*1);
 }
 
 if (msg[1] <= pianosectons[0]) {
-minimotifsL.memorize(msg[1], 20, true, 'L ->');
+minimotifsL.memorize(msg[1], 20, true, 'L');
 } else if (msg[1] <= pianosectons[1]) {
-minimotifsM.memorize(msg[1], 20, true, 'M ->');
+minimotifsM.memorize(msg[1], 20, true, 'M');
 } else if (msg[1] > pianosectons[1]) {
-minimotifsH.memorize(msg[1], 20, true, 'H ->');
+minimotifsH.memorize(msg[1], 20, true, 'H');
 }
 
    } // fi
@@ -191,7 +191,7 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
-   robot.typeString('~snippet2 = Tdef(\\snippet2, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(300, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play;');
+   robot.typeString('~snippet2 = Tdef(\\snippet2, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(100, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play;');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    // ignore or listen to motif based on delta time?
  ignore = true;
@@ -225,31 +225,32 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == 152 && msg[2] > 0) {
 
-memory.memorize(motifmem.memory[motifmem.memory.length-1], 3);
+// memory.memorize(motifmem.memory[motifmem.memory.length-1], 3); // general
 
-var listen = countNotes(memory.memory, msg[1]);
+var listenM = countNotes(minimotifsL.memory, msg[1]);
 
 // console.log("no. of repeated noted -> " + listen);
 
-if (listen == 2) { // tremolo = 4
-interval = Math.abs(memory.memory[0] - memory.memory[1]);
-// console.log("interval -> " + interval);
+if (listenM == 2) { // tremolo = 4
+intervalL = Math.abs(minimotifsL.memory[0] - minimotifsL.memory[1]);
+console.log("interval -> " + intervalL);
 
-if (interval > 0) {
-intervalmem.memorize(interval, 2);
+if (intervalL > 0) {
+intervalmemL.memorize(intervalL, 2);
 
-intervalsum = intervalmem.memory.reduce( (total,sum)=> { return total - sum});
+intervalsumL = intervalmemL.memory.reduce( (total,sum)=> { return total - sum});
 
 // console.log("sum -> " + intervalsum);
 
-if (intervalsum == 0) {
+if (intervalsumL == 0) {
 // console.log("no change...");
 } else {
 // console.log("new interval...");
 if (msg[1] <= pianosectons[1] && msg[1] > pianosectons[0]) {
   robot.typeString('~tremoloM = ' + interval);
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-} else if (msg[1] <= pianosectons[0]) {
+} else if (intervalsumL > 0) {
+  console.log("low interval -> " + intervalL);
   if (lMap === true) {
   robot.typeString('Tdef(\\snippet2).set(\\rit, ' + interval + ' )');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');

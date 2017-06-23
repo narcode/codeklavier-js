@@ -6,6 +6,7 @@ snippets for Mottipets
 
 // snippet 1: beat
 (
+s.boot;
 r = ();
 [1,2,3,4,5,6].do{|i| r[i] = 1};
 ~amp1 = 0.5;
@@ -56,9 +57,9 @@ Tdef(\listenerkr, {
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
     0.5.wait;
     }
-  }).play
+}).play
 
-  Tdef(\snippet2).set(\rit,1);
+Tdef(\snippet2).set(\rit,1);
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
