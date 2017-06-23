@@ -90,7 +90,7 @@ if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
 }
 
 var memory = new Mem4block();
-var intervalmem = new Mem4block();
+var intervalmemL = new Mem4block();
 var motifmem = new Mem4block();
 var premotifmem = new Mem4block(); // debug!
 var minimotifsL = new Mem4block();
