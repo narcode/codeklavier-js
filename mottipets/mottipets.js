@@ -31,6 +31,13 @@ var miniM1L = [36,43,44,39,38];
 var miniM1M = [60,67,68,63,62];
 var miniM1H = [84,91,92,87,86];
 
+var intervalL = 0;
+var intervalM = 0;
+var intervalH = 0;
+var intervalsumL = 0;
+var intervalsumM = 0;
+var intervalsumH = 0;
+
 
 var ignore = false;
 
@@ -221,41 +228,44 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == 152 && msg[2] > 0) {
 
-memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 3);
-memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 3);
-memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 3, true, 'tremolo M');
+memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 3, true, 'tremolo L');
+memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 3, true, 'tremolo M');
+memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 3, true, 'tremolo H');
 
-var listenL = countNotes(memoryL.memory, msg[1]);
-var listenM = countNotes(memoryM.memory, msg[1]);
-var listenH = countNotes(memoryH.memory, msg[1]);
+listenL = countNotes(memoryL.memory, msg[1]);
+listenM = countNotes(memoryM.memory, msg[1]);
+listenH = countNotes(memoryH.memory, msg[1]);
 
-// console.log("no. of repeated noted -> " + listen);
+console.log("no. of repeated noted -> " + listenH);
 
 if (listenL == 2) { // tremolo = 4
 intervalL = Math.abs(memoryL.memory[0] - memoryL.memory[1]);
-intervalsumL = intervalmemL.memory.reduce( (total,sum)=> { return total - sum});
+console.log("low interval -> " + intervalL);
 }
 
 if (listenM == 2) {
   intervalM = Math.abs(memoryM.memory[0] - memoryM.memory[1]);
-  intervalsumM = intervalmemM.memory.reduce( (total,sum)=> { return total - sum});
+  console.log("mid interval -> " + intervalM);
 }
 
 if (intervalH == 2) {
-  intervalH = Math.abs(memoryH.memory[0] - memoryM.memory[1]);
-  intervalsumH = intervalmemH.memory.reduce( (total,sum)=> { return total - sum});
+  intervalH = Math.abs(memoryH.memory[0] - memoryH.memory[1]);
+  console.log("hi interval -> " + intervalH);
 }
 
 if (intervalL > 0) {
   intervalmemL.memorize(intervalL, 2);
+  intervalsumL = intervalmemL.memory.reduce( (total,sum)=> { return total - sum});
 }
 
 if (intervalM > 0) {
 intervalmemM.memorize(intervalM, 2);
+intervalsumM = intervalmemM.memory.reduce( (total,sum)=> { return total - sum});
 }
 
 if (intervalH > 0) {
 intervalmemH.memorize(intervalH, 2);
+intervalsumH = intervalmemH.memory.reduce( (total,sum)=> { return total - sum});
 }
 // console.log("sum -> " + intervalsum);
 
