@@ -8,6 +8,7 @@ An open-source project of Felipe Ignacio Noriega & Anne Veinberg
 <div>[ Current branches in active development:</div>
 <div> * <strong>Mottipets</strong> (piano interacts with CodeKlavier via pianistic gestures) ]</div>
 </div>
+
 The codeklavier development adventure has just begun (March-April 2017). This is a 'hello world' and more information will be added soon.
 <div class='dream'>
 <div>The dream: </div><div>a programming language for music as interface</div></div>
