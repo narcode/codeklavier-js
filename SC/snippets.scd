@@ -4,6 +4,9 @@ snippets for Mottipets
 
 */
 
+t = TempoClock.default;
+t.tempo = 20/60;
+
 // snippet 1: beat
 (
 s.boot;
@@ -17,13 +20,9 @@ r = ();
 ~tremoloM = 1;
 ~tremoloH = 1;
 ~rit = 1;
+~ampacc= 0.4;
 
-~snippet1 = Tdef(\snippet1, {
-loop{
-Ndef(\pulse, {SinOsc.ar(456*LFTri.kr(88).range(300, ~topR)) * EnvGen.kr(Env.perc) * ~amp1}).play(0);
-(1/~rit.next).wait;
-}
-  }).play;
+~snippet1 = Ndef(\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);
 
 );
 
@@ -49,7 +48,7 @@ Ndef(\pulse2, {|pitch=400| SinOsc.ar(456*LFTri.kr(88).range(300, pitch)) * EnvGe
 Ndef(\pulse2).map(\pitch, 400);
 
 
-//loop listener?
+//loop listener? is there a better solution?
 Tdef(\listenerkr, {
   loop{
     Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 3000)}); // pitch
@@ -63,3 +62,4 @@ Tdef(\snippet2).set(\rit,1);
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
+~tremoloM = 3;
