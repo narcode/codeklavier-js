@@ -1,4 +1,4 @@
-# CodeKlavier (hello world branch)
+# CodeKlavier (hello world)
 
 programming with the piano as interface
 
@@ -6,7 +6,7 @@ An open-source project of Felipe Ignacio Noriega & Anne Veinberg
 
 <div class='dream'>
 <div>[ Other branches in active development:</div>
-<div> * Mottipets (piano interacts with CodeKlavier via pianistic gestures) ]</div>
+<div> * <strong>Mottipets</strong> (piano interacts with CodeKlavier via pianistic gestures) ]</div>
 </div>
 <br>
 The codeklavier development adventure has just begun (March-April 2017). This is a 'hello world' and more information will be added soon.
@@ -23,5 +23,5 @@ The codeklavier development adventure has just begun (March-April 2017). This is
 
 # This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
 
-1) install node.js
+1) install node.js<br>
 2) install robotjs
