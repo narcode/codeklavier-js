@@ -40,6 +40,7 @@ function compareMotif(array, motif) {
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
       console.log("no match motif :(")
+      return 0
     } else {
       return 1
       console.log("match motif!!!!");
