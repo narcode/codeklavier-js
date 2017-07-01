@@ -33,7 +33,7 @@ var test3 =  [52,53,48,55,49,79,81,83,84,44,51,60,63,68,72,63,60,61,58,49,55];
 
 function compareMotif(array, motif) {
   var compareArray = [];
-  var value = 0;
+  var value = '';
   array.forEach( (note) => {
     compareArray.push(motif2.indexOf(note));
     // console.log(compareArray.slice(-motif2.length));
@@ -41,9 +41,9 @@ function compareMotif(array, motif) {
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
       console.log("no match motif :(")
-      value = 0;
+      value = false;
     } else {
-      value = 1;
+      value = true;
       console.log("match motif!!!!");
       }
     }
