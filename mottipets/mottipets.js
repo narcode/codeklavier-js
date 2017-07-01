@@ -229,12 +229,13 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
 
 
       // motif 2:
-
+      if (msg[0] == 152 && msg[2] > 0) { // filling in the memory:
    if (compareMotif(motifmem.memory, motif2) == true) {
 console.log("motif 2 on");
-  //  robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
-  //  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+   robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
+   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    }
+ }
 
 
 if (deltaTime > 1) {
