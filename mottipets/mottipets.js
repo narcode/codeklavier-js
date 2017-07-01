@@ -153,6 +153,12 @@ var mmotifcountH = 0;
 
 // map switches
 var lMap = false;
+var lMap2 = false;
+var hMap2 = false;
+var mMap2 = false;
+
+
+
 
 
  // on message write to a stream

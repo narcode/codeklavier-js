@@ -19,6 +19,7 @@ r = ();
 ~name = Pseq([\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6],inf).asStream;
 ~tremoloM = 1;
 ~tremoloH = 1;
+~tremoloL = 1;
 ~rit = 1;
 ~ampacc= 0.4;
 
@@ -65,8 +66,6 @@ Tdef(\listenerkr, {
     }
 }).play
 
-Tdef(\snippet2).set(\rit,1);
-
 
 /// RECOGNIZING ANNE's TREMOLOS:
-Ndef(\acc).map(\note, 300, \fx, 0);
+Ndef(\acc).map(\note, Ndef(\krm2_1));
