@@ -37,13 +37,6 @@ motif2.forEach( (note) => {
 
 var pianosectons = [47, 78, 108];
 
-
-// debug motif 2:
-regmama = new RegExp('[' + test + ']');
-console.log(regmama.exec(motif2));
- // var regtest2 = motifsString.match(regmama);
-
-
 var miniM1L = [36,43,44,39,38];
 var miniM1M = [60,67,68,63,62];
 var miniM1H = [84,91,92,87,86];
