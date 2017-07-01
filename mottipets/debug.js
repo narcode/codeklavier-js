@@ -31,16 +31,17 @@ var test2 =  [63,68,72,44,60,51,63,60,61,55,58,49];
 var test3 =  [52,53,48,55,49,79,81,83,84,44,51,60,63,68,72,63,60,61,58,49,55];
 
 
-function compareMotif(array) {
+function compareMotif(array, motif) {
   var compareArray = [];
   array.forEach( (note) => {
     compareArray.push(motif2.indexOf(note));
-    console.log(compareArray.slice(-motif2.length));
-    if (compareArray.length >= motif2.length) {
-    if (compareArray.indexOf(-1) != -1) {
-      console.log("no match motif 2")
+    // console.log(compareArray.slice(-motif2.length));
+    var memlast = compareArray.slice(-motif.length);
+    if (memlast.length >= motif.length) {
+    if (memlast.indexOf(-1) != -1) {
+      console.log("no match motif :(")
     } else {
-      console.log("match motif 2!");
+      console.log("match motif!!!!");
       }
     }
   });
