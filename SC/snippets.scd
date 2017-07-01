@@ -9,7 +9,7 @@ t.tempo = 20/60;
 
 // snippet 1: beat
 (
-s.boot;
+s.reboot;
 r = ();
 [1,2,3,4,5,6].do{|i| r[i] = 1};
 ~amp1 = 0.5;
@@ -62,4 +62,3 @@ Tdef(\snippet2).set(\rit,1);
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
-~tremoloM = 3;

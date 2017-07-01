@@ -25,7 +25,7 @@ var motifs = [];
 
 var chromatic = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
 var motif2 = [63,72,60,68,51,44,60,63,61,58,55,49];
-var test = [63,44,72,68,60,51,63,60,61,55,58,49];
+
 var pianosectons = [47, 78, 108];
 
 var miniM1L = [36,43,44,39,38];
@@ -105,6 +105,22 @@ if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
 }
   }
 }
+
+function compareMotif(array) {
+  var compareArray = [];
+  array.forEach( (note) => {
+    compareArray.push(motif2.indexOf(note));
+    // console.log(compareArray);
+    if (compareArray.length >= motif2.length) {
+    if (compareArray.indexOf(-1) != -1) {
+      console.log("no match motif 2")
+    } else {
+      console.log("match motif 2!");
+      }
+    }
+  });
+}
+
 
 // for tremolos:
 var memoryL = new Mem4block();
@@ -192,10 +208,7 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
    var prememtest = prememString.match(chromaticString);
 
    // motif 2:
-  //  regmama = new RegExp('[' + bigmama2String + ']');
-  // console.log(regmama.exec(motifsString));
-  //  var regtest2 = motifsString.match(regmama);
-
+compareMotif(motifmem.memory);
 
 // console.log("PREMEM -> " + prememString);
 
