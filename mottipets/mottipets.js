@@ -201,6 +201,7 @@ minimotifsH.memorize(msg[1], 20, false, 'H');
 if (minimotifSearch(minimotifsL.memory, miniM1L, 1)) {
   mmotifcountL++;
     if (mmotifcountL === 1) {
+      if (mmotifcountL2 > 0) {mmotifcountL2--};
   console.log("motif L mapped! --> " + mmotifcountL + ' times...');
 lMap = true;
 // unmap:
@@ -211,6 +212,7 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 if (minimotifSearch(minimotifsL.memory, miniM2L, 2)) {
   mmotifcountL2++;
     if (mmotifcountL2 === 1) {
+      if (mmotifcountL > 0) {mmotifcountL--};
   console.log("motif L2 mapped! --> " + mmotifcountL2 + ' times...');
 lMap2 = true;
 robot.typeString('Ndef(\\acc).map(\\amp, Ndef(\\krm2_2));');
@@ -224,6 +226,7 @@ lMap = false;
 if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
   mmotifcountM++;
   if (mmotifcountM === 1) {
+    if (mmotifcountM2 > 0) {mmotifcountM2--};
   console.log("motif M mapped! --> " + mmotifcountM + ' times...');
   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
@@ -235,6 +238,7 @@ if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
 if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
   mmotifcountM2++;
   if (mmotifcountM2 === 1) {
+    if (mmotifcountM > 0) {mmotifcountM--};
   console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
   mMap2 = true; // do i need this ?
   robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
@@ -249,6 +253,7 @@ if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
 if (minimotifSearch(minimotifsH.memory, miniM1H, 1)) {
   mmotifcountH++;
   if (mmotifcountH === 1) {
+    if (mmotifcountH2 > 0) {mmotifcountH2--};
   console.log("motif H mapped! --> " + mmotifcountH + ' times...');
   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\fx, Ndef(\\krm3));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
@@ -260,6 +265,7 @@ if (minimotifSearch(minimotifsH.memory, miniM1H, 1)) {
 if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
   mmotifcountH2++;
   if (mmotifcountH2 === 1) {
+    if (mmotifcountH > 0) {mmotifcountH--};
   console.log("motif H2 mapped! --> " + mmotifcountH2 + ' times...');
   hMap2 = true;
   robot.typeString('Ndef(\\acc).map(\\fx, Ndef(\\krm2_3));');
