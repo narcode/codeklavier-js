@@ -160,6 +160,9 @@ var minimotifsH = new Mem4block();
 var mmotifcountL = 0;
 var mmotifcountM = 0;
 var mmotifcountH = 0;
+var mmotifcountL2 = 0;
+var mmotifcountM2 = 0;
+var mmotifcountH2 = 0;
 
 // map switches
 var lMap = false;
