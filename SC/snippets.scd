@@ -22,7 +22,7 @@ r = ();
 ~rit = 1;
 ~ampacc= 0.4;
 
-~snippet1 = Ndef(\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);
+~snippet1 = Ndef(\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp}).play(0,2);
 
 );
 
@@ -54,6 +54,13 @@ Tdef(\listenerkr, {
     Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 3000)}); // pitch
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
+
+// motif2
+    Ndef(\krm2_1, {~tremoloM.linlin(1, 16, 80, 800)}); // pitch
+    Ndef(\krm2_2, {~tremoloL.linlin(1, 16, 0, 0.5)}); // amp
+    Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 1)}); // fx
+
+
     0.5.wait;
     }
 }).play
@@ -62,3 +69,4 @@ Tdef(\snippet2).set(\rit,1);
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
+Ndef(\acc).map(\note, 300, \fx, 0);
