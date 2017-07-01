@@ -62,3 +62,4 @@ Tdef(\snippet2).set(\rit,1);
 
 
 /// RECOGNIZING ANNE's TREMOLOS:
+~snippet1 = Ndef(\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);
