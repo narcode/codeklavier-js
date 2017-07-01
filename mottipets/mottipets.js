@@ -87,7 +87,7 @@ function countNotes(array, note) {
   return count;
 }
 
-function minimotifSearch(array, elementsArray) {
+function minimotifSearch(array, elementsArray, motif) {
   var itemcount = 0;
   var itemindex = [];
   for (i=0; i<elementsArray.length; i++) {
@@ -100,12 +100,22 @@ itemindex.push(array.indexOf(elementsArray[i]));
 if (itemcount == elementsArray.length) {
   // console.log("motif present -> " + itemindex)
   // TODO-Nick: how to make this dynamic/ more intelligent?
+  if (motif==1) {
 if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
-&& itemindex[2] < itemindex[3] ** itemindex[3] < itemindex[4]) {
+&& itemindex[2] < itemindex[3] && itemindex[3] < itemindex[4]) {
   console.log("good order")
   return true
-  }
-}
+    }
+  } // fi motif
+  if (motif==2) {
+if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
+&& itemindex[2] < itemindex[3]) {
+  console.log("good order motif 2")
+  return true
+    }
+  } // fi motif2
+
+    }
   }
 }
 
@@ -185,14 +195,14 @@ minimotifsH.memorize(msg[1], 20, false, 'H');
    } // fi
 
 // Lowregister:
-if (minimotifSearch(minimotifsL.memory, miniM1L)) {
+if (minimotifSearch(minimotifsL.memory, miniM1L, 1)) {
   mmotifcountL++;
     if (mmotifcountL === 1) {
   console.log("motif L mapped! --> " + mmotifcountL + ' times...');
 lMap = true;
   }
 }
-if (minimotifSearch(minimotifsL.memory, miniM2L)) {
+if (minimotifSearch(minimotifsL.memory, miniM2L, 2)) {
   mmotifcountL2++;
     if (mmotifcountL2 === 1) {
   console.log("motif L2 mapped! --> " + mmotifcountL2 + ' times...');
@@ -203,7 +213,7 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 
 // Mid register:
-if (minimotifSearch(minimotifsM.memory, miniM1M)) {
+if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
   mmotifcountM++;
   if (mmotifcountM === 1) {
   console.log("motif M mapped! --> " + mmotifcountM + ' times...');
@@ -211,7 +221,7 @@ if (minimotifSearch(minimotifsM.memory, miniM1M)) {
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
-if (minimotifSearch(minimotifsM.memory, miniM2M)) {
+if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
   mmotifcountM2++;
   if (mmotifcountM2 === 1) {
   console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
@@ -222,7 +232,7 @@ if (minimotifSearch(minimotifsM.memory, miniM2M)) {
 }
 
 // High register:
-if (minimotifSearch(minimotifsH.memory, miniM1H)) {
+if (minimotifSearch(minimotifsH.memory, miniM1H, 1)) {
   mmotifcountH++;
   if (mmotifcountH === 1) {
   console.log("motif H mapped! --> " + mmotifcountH + ' times...');
@@ -230,7 +240,7 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
-if (minimotifSearch(minimotifsH.memory, miniM2H)) {
+if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
   mmotifcountH2++;
   if (mmotifcountH2 === 1) {
   console.log("motif H2 mapped! --> " + mmotifcountH2 + ' times...');
