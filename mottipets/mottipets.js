@@ -114,9 +114,11 @@ function compareMotif(array, motif) {
     var memlast = compareArray.slice(-motif.length);
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
-      console.log("no match motif :(")
+      // console.log("no match motif :(")
+      return false
     } else {
-      console.log("match motif!!!!");
+      console.log("matched motif!!!!");
+      return true
       }
     }
   });
@@ -208,9 +210,6 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
    var regtest = motifsString.match(chromaticString);
    var prememtest = prememString.match(chromaticString);
 
-   // motif 2:
-compareMotif(motifmem.memory, motif2);
-
 // console.log("PREMEM -> " + prememString);
 
 // motifs to snippets:
@@ -226,16 +225,12 @@ compareMotif(motifmem.memory, motif2);
      }
    }
 
- //   if (regtest2 != null) {
- //     console.log("regtest2 -> " + regtest2);
- //   if (regtest2.length > 11) {
- //   console.log('true! -> ' + regtest2.length);
- //   console.log('length -> ' + bigmama2.length);
- //   //robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
- //   //robot.keyTap('enter', 'shift'); robot.keyTap('enter');
- // // ignore2 = true;
- //     }
- //   }
+
+      // motif 2:
+   if (compareMotif(motifmem.memory, motif2)) {
+   robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
+   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+   }
 
 
 if (deltaTime > 1) {
