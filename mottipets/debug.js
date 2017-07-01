@@ -30,8 +30,8 @@ var test =   [12,63,44,72,68,60,51,63,60,61,55,58,49];
 var test2 =  [63,68,72,44,60,51,63,60,61,55,58,49];
 var test3 =  [63,72,44,68,60,51,63,60,61,58,49,55];
 
-motif2.forEach( (note) => {
-  console.log(test.indexOf(note));
+test.forEach( (note) => {
+  console.log(motif2.indexOf(note));
 });
 
 
