@@ -106,16 +106,17 @@ if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
   }
 }
 
-function compareMotif(array) {
+function compareMotif(array, motif) {
   var compareArray = [];
   array.forEach( (note) => {
     compareArray.push(motif2.indexOf(note));
-    // console.log(compareArray);
-    if (compareArray.length >= motif2.length) {
-    if (compareArray.indexOf(-1) != -1) {
-      console.log("no match motif 2")
+    // console.log(compareArray.slice(-motif2.length));
+    var memlast = compareArray.slice(-motif.length);
+    if (memlast.length >= motif.length) {
+    if (memlast.indexOf(-1) != -1) {
+      console.log("no match motif :(")
     } else {
-      console.log("match motif 2!");
+      console.log("match motif!!!!");
       }
     }
   });
@@ -208,7 +209,7 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
    var prememtest = prememString.match(chromaticString);
 
    // motif 2:
-compareMotif(motifmem.memory);
+compareMotif(motifmem.memory, motif2);
 
 // console.log("PREMEM -> " + prememString);
 
