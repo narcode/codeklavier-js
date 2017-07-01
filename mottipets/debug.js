@@ -35,7 +35,7 @@ function compareMotif(array) {
   var compareArray = [];
   array.forEach( (note) => {
     compareArray.push(motif2.indexOf(note));
-    console.log(compareArray.slice(-12));
+    console.log(compareArray.slice(motif2.length));
     if (compareArray.length >= motif2.length) {
     if (compareArray.indexOf(-1) != -1) {
       console.log("no match motif 2")
