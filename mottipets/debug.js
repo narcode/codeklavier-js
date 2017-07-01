@@ -35,7 +35,7 @@ var compareArray = [];
 test.forEach( (note) => {
   compareArray.push(motif2.indexOf(note));
   console.log(compareArray);
-  if (compareArray.indexOf(5)) {
+  if (compareArray.indexOf(-1) != -1) {
     console.log("no match")
   }
 });
