@@ -118,7 +118,7 @@ function compareMotif(array, motif) {
       // console.log("no match motif :(")
     value = false;
     } else {
-      console.log("matched motif!!!!");
+      // console.log("matched motif!!!!");
     value = true;
       }
     }
@@ -229,9 +229,8 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
 
 
       // motif 2:
-      console.log(compareMotif(motifmem.memory, motif2));
    if (compareMotif(motifmem.memory, motif2) == true) {
-     console.log("motif2 is true");
+console.log("motif 2 on");
   //  robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
   //  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    }
