@@ -41,6 +41,7 @@ function compareMotif(array, motif) {
     if (memlast.indexOf(-1) != -1) {
       console.log("no match motif :(")
     } else {
+      return 1
       console.log("match motif!!!!");
       }
     }
