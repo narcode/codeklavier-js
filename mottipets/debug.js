@@ -47,7 +47,7 @@ function compareMotif(array, motif) {
   });
 }
 
-compareMotif(test3);
+compareMotif(test3, motif2);
 
 
 
