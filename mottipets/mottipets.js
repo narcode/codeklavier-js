@@ -108,6 +108,7 @@ if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
 
 function compareMotif(array, motif) {
   var compareArray = [];
+  var value = '';
   array.forEach( (note) => {
     compareArray.push(motif2.indexOf(note));
     // console.log(compareArray.slice(-motif2.length));
@@ -115,13 +116,14 @@ function compareMotif(array, motif) {
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
       // console.log("no match motif :(")
-      return 0;
+    value = false;
     } else {
       console.log("matched motif!!!!");
-      return 1;
+    value = true;
       }
     }
   });
+  return value
 }
 
 
