@@ -45,7 +45,7 @@ Ndef(\pulse2, {|pitch=400| SinOsc.ar(456*LFTri.kr(88).range(300, pitch)) * EnvGe
 }
   }).play;
 
-[\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6].do{|i| Ndef(i).map(\pitch, Ndef(\krm1));}
+[\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6].do{|i| Ndef(i).set(\pitch, ~tremoloM.linlin(1, 16, 200, 3000));} // unmap
 
 Ndef(\pulse2).map(\pitch, 400);
 
@@ -68,62 +68,5 @@ Tdef(\listenerkr, {
 }).play
 
 
-/// RECO~tremoloM = 3
-~snippet1 = Ndef(\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp}).play(0,2);
-Ndef(\acc).map(\amp, Ndef(\krm2_2));
-~tremoloL = 7
-~tremoloL = 2
-~tremoloL = 4
-Ndef(\acc).map(\note, Ndef(\krm2_1));
-~tremoloM = 1
-~tremoloM = 1
-~tremoloM = 2
-~tremoloM = 2
-~tremoloM = 3
-~tremoloM = 3
-~tremoloM = 4
-~tremoloM = 4
-~tremoloM = 5
-~tremoloM = 5
-~tremoloM = 6
-~tremoloM = 6
-~tremoloM = 7
-~tremoloM = 7
-~tremoloM = 8
-~tremoloM = 8
-~tremoloM = 9
-~tremoloM = 9
-~tremoloM = 3
-~tremoloM = 3
-~tremoloM = 10
-~tremoloM = 10
-~tremoloM = 11
-~tremoloM = 11
-~tremoloM = 12
-~tremoloM = 12
-~tremoloM = 14
-~tremoloM = 14
-~tremoloM = 17
-~tremoloM = 17
-~tremoloM = 19
-~tremoloM = 19
-~tremoloM = 20
-~tremoloM = 20
-~tremoloM = 21
-~tremoloM = 21
-~tremoloM = 22
-~tremoloM = 22
-~tremoloM = 23
-~tremoloM = 23
-~tremoloM = 24
-~tremoloM = 24
-~tremoloM = 25
-~tremoloM = 25
-~tremoloM = 26
-~tremoloM = 26
-~tremoloM = 2
-~tremoloM = 2
-Ndef(\acc).map(\fx, Ndef(\krm2_3));
-~tremoloH = 10
-~tremoloH = 10
-~tremoloL = 2
+/// CODE SPACE:
+~tremoloM = 1;
