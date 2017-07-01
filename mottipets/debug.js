@@ -51,7 +51,7 @@ function compareMotif(array, motif) {
   return value;
 }
 
-compareMotif(test3, motif2);
+console.log(compareMotif(test3, motif2));
 
 
 
