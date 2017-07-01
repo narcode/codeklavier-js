@@ -115,10 +115,10 @@ function compareMotif(array, motif) {
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
       // console.log("no match motif :(")
-      return false;
+      return 0;
     } else {
       console.log("matched motif!!!!");
-      return true;
+      return 1;
       }
     }
   });
