@@ -35,10 +35,12 @@ var compareArray = [];
 test2.forEach( (note) => {
   compareArray.push(motif2.indexOf(note));
   console.log(compareArray);
-  if (compareArray.length < motif2.length && compareArray.indexOf(-1) != -1) {
+  if (compareArray.length >= motif2.length) {
+  if (compareArray.indexOf(-1) != -1) {
     console.log("no match")
   } else {
     console.log("match!");
+    }
   }
 });
 
