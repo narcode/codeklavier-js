@@ -227,9 +227,10 @@ if (minimotifSearch(minimotifsH.memory, miniM1H)) {
 
 
       // motif 2:
-   if (compareMotif(motifmem.memory, motif2)) {
-   robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
-   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+   if (compareMotif(motifmem.memory, motif2) == true) {
+     console.log("motif2 is true");
+  //  robot.typeString('~snippet1 = Ndef(\\acc, {|note=100, amp=0.03| SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]) * amp}).play(0,2);');
+  //  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    }
 
 
