@@ -31,18 +31,23 @@ var test2 =  [63,68,72,44,60,51,63,60,61,55,58,49];
 var test3 =  [63,72,44,68,60,51,63,60,61,58,49,55];
 
 
-var compareArray = [];
-test3.forEach( (note) => {
-  compareArray.push(motif2.indexOf(note));
-  console.log(compareArray);
-  if (compareArray.length >= motif2.length) {
-  if (compareArray.indexOf(-1) != -1) {
-    console.log("no match")
-  } else {
-    console.log("match!");
+function compareMotif(array) {
+  var compareArray = [];
+  array.forEach( (note) => {
+    compareArray.push(motif2.indexOf(note));
+    // console.log(compareArray);
+    if (compareArray.length >= motif2.length) {
+    if (compareArray.indexOf(-1) != -1) {
+      console.log("no match motif 2")
+    } else {
+      console.log("match motif 2!");
+      }
     }
-  }
-});
+  });
+}
+
+compareMotif(test3);
+
 
 
 var pianosectons = [47, 78, 108];
