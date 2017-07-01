@@ -205,7 +205,7 @@ if (minimotifSearch(minimotifsL.memory, miniM1L, 1)) {
   console.log("motif L mapped! --> " + mmotifcountL + ' times...');
 lMap = true;
 // unmap:
-robot.typeString('Ndef(\\acc).set(\\amp, Ndef(\\krm2_2));');
+robot.typeString('Ndef(\\acc).set(\\amp, ~tremoloM.linlin(1, 16, 80, 800));');
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
@@ -231,7 +231,7 @@ if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   // unmap others:
-  robot.typeString('Ndef(\\acc).set(\\note, Ndef(\\krm2_1));');
+  robot.typeString('Ndef(\\acc).set(\\note, ~tremoloL.linlin(1, 16, 0, 3));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
@@ -244,7 +244,7 @@ if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
   robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   // unmap others:
-  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, Ndef(\\krm1));');
+  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
@@ -258,7 +258,7 @@ if (minimotifSearch(minimotifsH.memory, miniM1H, 1)) {
   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\fx, Ndef(\\krm3));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   // unmap:
-  robot.typeString('Ndef(\\acc).set(\\fx, Ndef(\\krm2_3));');
+  robot.typeString('Ndef(\\acc).set(\\fx, ~tremoloH.linlin(1, 16, 0, 15));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
@@ -271,7 +271,7 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
   robot.typeString('Ndef(\\acc).map(\\fx, Ndef(\\krm2_3));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   // unmap:
-  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\fx, Ndef(\\krm3));}');
+  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\fx, ~tremoloH.linlin(1, 16, 1, 88));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }

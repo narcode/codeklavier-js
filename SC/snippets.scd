@@ -45,7 +45,7 @@ Ndef(\pulse2, {|pitch=400| SinOsc.ar(456*LFTri.kr(88).range(300, pitch)) * EnvGe
 }
   }).play;
 
-[\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6].do{|i| Ndef(i).set(\pitch, ~tremoloM.linlin(1, 16, 200, 3000));} // unmap
+[\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6].do{|i| Ndef(i).set(\pitch, Ndef(\krm1));}
 
 Ndef(\pulse2).map(\pitch, 400);
 
@@ -69,4 +69,3 @@ Tdef(\listenerkr, {
 
 
 /// CODE SPACE:
-~tremoloM = 1;
