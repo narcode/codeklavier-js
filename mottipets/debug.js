@@ -37,6 +37,8 @@ test2.forEach( (note) => {
   console.log(compareArray);
   if (compareArray.indexOf(-1) != -1) {
     console.log("no match")
+  } else {
+    console.log("match!");
   }
 });
 
