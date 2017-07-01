@@ -32,7 +32,7 @@ var test3 =  [63,72,44,68,60,51,63,60,61,58,49,55];
 
 
 var compareArray = [];
-test2.forEach( (note) => {
+test.forEach( (note) => {
   compareArray.push(motif2.indexOf(note));
   console.log(compareArray);
   if (compareArray.length >= motif2.length) {
