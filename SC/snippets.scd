@@ -68,21 +68,3 @@ Tdef(\listenerkr, {
 
 
 /// CODE SPACE:
-~snippet2 = Tdef(\snippet2, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(100, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play;
-Ndef(\acc).set(\amp, ~tremoloL.linlin(1, 16, 0, 3));
-Tdef(\snippet2).set(\rit, 5 )
-Tdef(\snippet2).set(\rit, 2 )
-~snippet1 = Ndef(\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);
-Ndef(\acc).map(\amp, Ndef(\krm2_2));
-~tremoloL = 3
-~tremoloL = 4
-~tremoloL = 5
-~tremoloL = 6
-~tremoloL = 2
-~tremoloL = 9
-~tremoloL = 1
-~tremoloL = 4
-~tremoloL = 3
-~tremoloL = 2
-~tremoloL = 5
-~tremoloL = 1

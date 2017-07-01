@@ -163,6 +163,8 @@ var mmotifcountH = 0;
 var mmotifcountL2 = 0;
 var mmotifcountM2 = 0;
 var mmotifcountH2 = 0;
+var motif2counter = 0;
+
 
 // map switches
 var lMap = false;
@@ -305,9 +307,12 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
       // motif 2:
       if (msg[0] == 152 && msg[2] > 0) { // filling in the memory:
    if (compareMotif(motifmem.memory, motif2) == true) {
+     motif2counter++;
+     if (motif2counter == 1) {
 console.log("motif 2 on");
    robot.typeString('~snippet1 = Ndef(\\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+      }
    }
  }
 
