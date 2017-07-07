@@ -69,14 +69,16 @@ Mem4block.prototype.memorize = function (block, length, debug, debugname) {
 var array = this.memory;
 
   array.push(block);
-  if (debug == true) {
-  console.log(debugname + ' -> ' + array);
-}
 
   if (array.length > length) {
     this.memory = array.slice(-length);
     // console.log("memory full");
   }
+
+  if (debug == true) {
+  console.log(debugname + ' -> ' + this.memory);
+}
+
 };
 
 function countNotes(array, note) {
@@ -105,14 +107,21 @@ if (itemcount == elementsArray.length) {
   if (motif==1) {
 if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
 && itemindex[2] < itemindex[3] && itemindex[3] < itemindex[4]) {
-  console.log("good order")
+  console.log("good order motif 1")
+  minimotifsL.memory = [];
+  minimotifsM.memory = [];
+  minimotifsH.memory = [];
   return true
     }
   } // fi motif
   if (motif==2) {
+    // console.log(itemindex);
 if (itemindex[0] < itemindex[1] && itemindex[1] < itemindex[2]
 && itemindex[2] < itemindex[3]) {
   console.log("good order motif 2")
+  minimotifsL.memory = [];
+  minimotifsM.memory = [];
+  minimotifsH.memory = [];
   return true
     }
   } // fi motif2
@@ -184,7 +193,7 @@ var mMap2 = false;
    if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);
 
-motifmem.memorize(msg[1], 20, true, 'Big mama -> ');
+motifmem.memorize(msg[1], 20, false, 'Big motif -> ');
 
 if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
 premotifmem.memorize(msg[1], chromatic.length*1);
@@ -208,9 +217,12 @@ if (minimotifSearch(minimotifsL.memory, miniM1L, 1)) {
       if (mmotifcountL2 > 0) {mmotifcountL2 = 0};
   console.log("motif L mapped! --> " + mmotifcountL + ' times...');
 lMap = true;
+lMap2 = false;
 // unmap:
+if (motif2counter > 0) {
 robot.typeString('Ndef(\\acc).set(\\amp, ~tremoloL.linlin(1, 16, 0, 3));');
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
   }
 }
 if (minimotifSearch(minimotifsL.memory, miniM2L, 2)) {
@@ -219,10 +231,11 @@ if (minimotifSearch(minimotifsL.memory, miniM2L, 2)) {
       if (mmotifcountL > 0) {mmotifcountL = 0};
   console.log("motif L2 mapped! --> " + mmotifcountL2 + ' times...');
 lMap2 = true;
-robot.typeString('Ndef(\\acc).map(\\amp, Ndef(\\krm2_2));');
-robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 //unmap:
 lMap = false;
+//map:
+robot.typeString('Ndef(\\acc).map(\\amp, Ndef(\\krm2_2));');
+robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
 }
 
@@ -235,8 +248,11 @@ if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   // unmap others:
+  if (motif2counter > 0) {
+  mMap2 = false;
   robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
   }
 }
 if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
@@ -262,8 +278,11 @@ if (minimotifSearch(minimotifsH.memory, miniM1H, 1)) {
   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\fx, Ndef(\\krm3));}');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   // unmap:
+  if (motif2counter > 0) {
+  hMap2 = false;
   robot.typeString('Ndef(\\acc).set(\\fx, ~tremoloH.linlin(1, 16, 0, 15));');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
   }
 }
 if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
@@ -314,6 +333,7 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
 console.log("motif 2 on");
    robot.typeString('~snippet1 = Ndef(\\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+   // TODO: make a playing=true variable to prevent modification of the snippet before its played. or use motif counter -> DONE
       }
    }
  }
@@ -323,9 +343,15 @@ if (deltaTime > 1) { // revise...
   // console.log("MATCH -> " + prememtest);
 
   ignore = false;
-  if (motifmem.memory.length > 87) { // length is shorter now...
+  // if (motifmem.memory.length > 19) { // length is shorter now...
   motifmem.memory = []; // make this a method too...
-  }
+  minimotifsL.memory = [];
+  minimotifsM.memory = [];
+  minimotifsH.memory = [];
+  memoryL.memory = [];
+  memoryM.memory = [];
+  memoryH.memory = [];
+  // }
 }
 
 if (ignore == true) {
@@ -341,11 +367,11 @@ chromatic.forEach( (elem)=>{
 
 // chain to tremolo recognition:
 // motifs.push(msg[1]);
-if (msg[0] == 144 && msg[2] > 0) {
-
-memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 3, false, 'tremolo L');
-memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 3, false, 'tremolo M');
-memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 3, false, 'tremolo H');
+if (msg[0] == 144 && msg[2] > 0 && deltaTime < 0.1) {
+// console.log("DT -> " + deltaTime);
+memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, false, 'tremolo L');
+memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, true, 'tremolo M');
+memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, false, 'tremolo H');
 
 listenL = countNotes(memoryL.memory, msg[1]);
 listenM = countNotes(memoryM.memory, msg[1]);
@@ -353,24 +379,25 @@ listenH = countNotes(memoryH.memory, msg[1]);
 
 // console.log("no. of repeated noted -> " + listenH);
 
+// maybe put in switch?
 if (listenL == 2) { // tremolo = 4
-intervalL = Math.abs(memoryL.memory[0] - memoryL.memory[1]);
-// console.log("low interval -> " + intervalL);
+intervalL = Math.abs(memoryL.memory[2] - memoryL.memory[3]);
+//console.log("low interval -> " + intervalL);
 }
 
 if (listenM == 2) {
-  intervalM = Math.abs(memoryM.memory[0] - memoryM.memory[1]);
+  intervalM = Math.abs(memoryM.memory[2] - memoryM.memory[3]);
   // console.log("mid interval -> " + intervalM);
 }
 
 if (listenH == 2) {
-  intervalH = Math.abs(memoryH.memory[0] - memoryH.memory[1]);
+  intervalH = Math.abs(memoryH.memory[2] - memoryH.memory[3]);
   // console.log("hi interval -> " + intervalH);
 }
 
 if (intervalL > 0) {
-  intervalmemL.memorize(intervalL, 2);
-  intervalsumL = intervalmemL.memory.reduce( (total,sum)=> { return total - sum});
+  intervalmemL.memorize(intervalL, 2, false, 'LMEM');
+  intervalsumL = intervalmemL.memory.reduce( (total,sum)=> {var sum = total-sum; return sum});
   // console.log("interval reduce L -> " + intervalsumL);
 }
 
@@ -388,6 +415,7 @@ intervalsumH = intervalmemH.memory.reduce( (total,sum)=> { return total - sum});
 
 if (intervalsumM != 0) {
 if (Math.abs(intervalsumM) > 0) {
+  memoryM.memory = [];
   console.log("mid interval -> " + intervalM);
   robot.typeString('~tremoloM = ' + intervalM);
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
@@ -400,6 +428,7 @@ if (Math.abs(intervalsumM) > 0) {
 
 if (intervalsumL != 0) {
   if (Math.abs(intervalsumL) > 0) {
+    memoryL.memory = [];
     console.log("low interval -> " + intervalL);
     if (lMap === true) {
     robot.typeString('Tdef(\\snippet2).set(\\rit, ' + intervalL + ' )');
@@ -414,6 +443,7 @@ if (intervalsumL != 0) {
 
 if (intervalsumH != 0) {
   if (Math.abs(intervalsumH) > 0) {
+    memoryL.memory = [];
 console.log("high interval -> " + intervalH);
 robot.typeString('~tremoloH = ' + intervalH);
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
@@ -427,3 +457,5 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 } // fi tremolo
 
  });
+
+ // TODO: re-mapping shouldn't change a parameter firts... debug that.
