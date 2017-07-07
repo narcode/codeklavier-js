@@ -26,7 +26,7 @@ input.on('message', function(deltaTime, msg) {
 //msg[3]
 // velocity
 
-  console.log('m:' + msg);
+  console.log('m:' + msg + 'deltaTime: ' + deltaTime);
 });
 
 // Open the first available input port.

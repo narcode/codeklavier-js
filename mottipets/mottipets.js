@@ -20,14 +20,14 @@ input.openPort(2);
 // motifs:
 var motifs = [];
 
-// chromatic scale:
 /////function chromaticScale:  f(n - n1) = abs(1) \\\\\
-
+//// motifs:
 var chromatic = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
 var motif2 = [63,72,60,68,51,44,60,63,61,58,55,49];
 
 var pianosectons = [47, 78, 108];
 
+// mini motifs:
 var miniM1L = [36,43,44,39,38];
 var miniM1M = [60,67,68,63,62];
 var miniM1H = [84,91,92,87,86];
@@ -35,6 +35,7 @@ var miniM2L = [26,32,35,38];
 var miniM2M = [50,56,59,62];
 var miniM2H = [86,92,95,98];
 
+// declare vars
 var intervalL = 0;
 var intervalM = 0;
 var intervalH = 0;
@@ -42,9 +43,10 @@ var intervalsumL = 0;
 var intervalsumM = 0;
 var intervalsumH = 0;
 
-
+// to listen/ignore the chromatic motif
 var ignore = false;
 
+// functions:
 function Mem4block() {
   this.one = '';
   this.two = '';
@@ -179,7 +181,7 @@ var mMap2 = false;
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
    // motifs.push(msg[1]);
-   if (msg[0] == 152 && msg[2] > 0) { // filling in the memory:
+   if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);
 
 motifmem.memorize(msg[1], 20, true, 'Big mama -> ');
@@ -305,7 +307,7 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
 
 
       // motif 2:
-      if (msg[0] == 152 && msg[2] > 0) { // filling in the memory:
+      if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
    if (compareMotif(motifmem.memory, motif2) == true) {
      motif2counter++;
      if (motif2counter == 1) {
@@ -339,7 +341,7 @@ chromatic.forEach( (elem)=>{
 
 // chain to tremolo recognition:
 // motifs.push(msg[1]);
-if (msg[0] == 152 && msg[2] > 0) {
+if (msg[0] == 144 && msg[2] > 0) {
 
 memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 3, false, 'tremolo L');
 memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 3, false, 'tremolo M');
