@@ -24,6 +24,12 @@ var motifs = [];
 //// motifs:
 var chromatic = [ 30, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35];
 var motif2 = [63,72,60,68,51,44,60,63,61,58,55,49];
+// conditional motifs:
+var conditional1 = [45,43,46,45,43,41,43,45];
+var conditional2 = [36,31,29,26,28,35,38,33,24,26,31,28,33,21,23,29];
+
+var result1 = [60,62,66,70,69,67];
+var result2 = [87,80,78,68,75,79];
 
 var pianosectons = [47, 78, 108];
 
@@ -34,6 +40,7 @@ var miniM1H = [84,91,92,87,86];
 var miniM2L = [26,32,35,38];
 var miniM2M = [50,56,59,62];
 var miniM2H = [86,92,95,98];
+
 
 // declare vars
 var intervalL = 0;
@@ -81,13 +88,27 @@ var array = this.memory;
 
 };
 
-function countNotes(array, note) {
+function countNotes(array, note, debug) {
   var count = 0;
   for (i=0; i<array.length; i++) {
-    if (array[i] == note) {
-      count++;
+    if (i==2) {
+      if (array[0] == array[i]) {
+        count++
+      }
+    }
+    if (i==3) {
+      if (array[1] == array[i]) {
+        count++
+      }
     }
   }
+
+if (debug == true) {
+  console.log("current note is " + note);
+  console.log("array for tremolo is " + array);
+  console.log("count repeated notes: " + count);
+}
+
   return count;
 }
 
@@ -134,8 +155,8 @@ function compareMotif(array, motif) {
   var compareArray = [];
   var value = '';
   array.forEach( (note) => {
-    compareArray.push(motif2.indexOf(note));
-    // console.log(compareArray.slice(-motif2.length));
+    compareArray.push(motif.indexOf(note));
+    // console.log(compareArray.slice(-motif.length));
     var memlast = compareArray.slice(-motif.length);
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
@@ -176,6 +197,11 @@ var mmotifcountM2 = 0;
 var mmotifcountH2 = 0;
 var motif2counter = 0;
 
+// debug if needed?
+var motif_cond1counter = 0;
+var motif_cond2counter = 0;
+var result1counter = 0;
+var result2counter = 0;
 
 // map switches
 var lMap = false;
@@ -183,8 +209,10 @@ var lMap2 = false;
 var hMap2 = false;
 var mMap2 = false;
 
-
-
+// conditionals:
+var cond1 = false;
+var cond2 = false;
+// result1 = false;
 
 
  // on message write to a stream
@@ -193,7 +221,7 @@ var mMap2 = false;
    if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);
 
-motifmem.memorize(msg[1], 20, false, 'Big motif -> ');
+motifmem.memorize(msg[1], 20, true, 'Big motifs -> ');
 
 if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
 premotifmem.memorize(msg[1], chromatic.length*1);
@@ -338,6 +366,68 @@ console.log("motif 2 on");
    }
  }
 
+ // conditional motifs:
+ if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
+if (compareMotif(motifmem.memory, conditional1) == true) {
+motif_cond1counter++;
+if (motif_cond1counter == 1) {
+console.log("motif conditional 1 on!");
+cond1 = true;
+    }
+  }
+}
+if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
+if (compareMotif(motifmem.memory, conditional2) == true) {
+motif_cond2counter++;
+if (motif_cond2counter == 1) {
+console.log("motif conditional 2 on!");
+cond2 = true;
+   }
+ }
+}
+
+// conditional-result motifs:
+if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
+if (compareMotif(motifmem.memory, result1) == true) {
+// result1counter++;
+// if (result1counter == 1) {
+console.log("motif result 1 on!");
+if (cond1==true) {
+  robot.typeString('Ndef(\\cond, {SinOsc.ar(440)*0.07}).play(0,2);');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  cond1=false;
+  motif_cond1counter=0;
+}
+if (cond2==true) {
+  robot.typeString('Ndef(\\cond, {LPF.ar(BrownNoise.ar(1), 678)*0.3}).play(0,2);');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  cond2=false;
+  motif_cond2counter=0;
+}
+    // }
+  }
+}
+if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
+if (compareMotif(motifmem.memory, result2) == true) {
+// result1counter++;
+// if (result1counter == 1) {
+console.log("motif result 2 on!");
+if (cond2==true) {
+  robot.typeString('Ndef(\\cond, {LPF.ar(BrownNoise.ar(1), 678)*0.3}).play(0,2);');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  cond2=false;
+  motif_cond2counter=0;
+}
+if (cond1==true) {
+  robot.typeString('Ndef(\\cond, {SinOsc.ar(440)*0.07}).play(0,2);');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  cond1=false;
+  motif_cond1counter=0;
+}
+    // }
+  }
+}
+
 
 if (deltaTime > 1) { // revise...
   // console.log("MATCH -> " + prememtest);
@@ -369,9 +459,9 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == 144 && msg[2] > 0 && deltaTime < 0.1) {
 // console.log("DT -> " + deltaTime);
-memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, false, 'tremolo L');
+memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, true, 'tremolo L');
 memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, true, 'tremolo M');
-memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, false, 'tremolo H');
+memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, true, 'tremolo H');
 
 listenL = countNotes(memoryL.memory, msg[1]);
 listenM = countNotes(memoryM.memory, msg[1]);
