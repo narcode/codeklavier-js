@@ -13,7 +13,7 @@ s.sync;
 r = ();
 [1,2,3,4,5,6].do{|i| r[i] = 1};
 s.sync;
-~amp1 = 0.2;
+~amp1 = 0.1;
 ~rit = Pseq([Pfuncn({r[1]},1), Pfuncn({r[2]},1), Pfuncn({r[3]},1), Pfuncn({r[4]},1)], inf).asStream;
 ~topR = 3000;
 ~rit2 = 1;
@@ -46,7 +46,7 @@ Tdef(\listenerkr, {
     Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 15)}); // fx
 
 
-    0.5.wait;
+    0.1.wait;
     }
 }).play;
 
