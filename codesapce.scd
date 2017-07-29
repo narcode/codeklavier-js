@@ -11,5 +11,3 @@
 
 
 // TODO: ctl+cmd+m to select all in bracket
-Ndef(\cond, {SinOsc.ar(440)*0.07}).play(0,2);
-Ndef(\cond, {SinOsc.ar(440)*0.07}).play(0,2);

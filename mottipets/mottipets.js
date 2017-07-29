@@ -28,6 +28,8 @@ var motif2 = [63,72,60,68,51,44,60,63,61,58,55,49];
 var conditional1 = [45,43,46,45,43,41,43,45];
 var conditional2 = [36,31,29,26,28,35,38,33,24,26,31,28,33,21,23,29];
 
+// TODO: midi parser? Class -> motif library
+
 var result1 = [60,62,66,70,69,67];
 var result2 = [87,80,78,68,75,79];
 
@@ -210,10 +212,12 @@ var hMap2 = false;
 var mMap2 = false;
 
 // conditionals:
-var cond1 = false;
-var cond2 = false;
+var cond1 = '';
+var cond2 = '';
 // result1 = false;
 
+// tests
+var narcode = 0;
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
@@ -340,6 +344,7 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
 // console.log("PREMEM -> " + prememString);
 
 // motifs to snippets:
+// this is OLD, legacy...
    if (regtest != null) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
@@ -370,10 +375,12 @@ console.log("motif 2 on");
  if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
 if (compareMotif(motifmem.memory, conditional1) == true) {
 motif_cond1counter++;
-if (motif_cond1counter == 1) {
-console.log("motif conditional 1 on!");
+// if (motif_cond1counter == 1) {
+console.log("motif conditional 1 on!" + "intervalM is " + narcode);
+if (motif2counter >= 1 && mMap2 === true && narcode > 7) {
 cond1 = true;
-    }
+  }
+    // }
   }
 }
 if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
@@ -397,12 +404,19 @@ if (cond1==true) {
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond1=false;
   motif_cond1counter=0;
+} else {
+  // robot.keyTap('.', 'command');
+  narctest = narcode+7;
+  robot.typeString('~tremoloM = ' + narctest);
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 if (cond2==true) {
-  robot.typeString('Ndef(\\cond, {LPF.ar(BrownNoise.ar(1), 678)*0.3}).play(0,2);');
+  robot.typeString('Ndef(\\cond, {SinOsc.ar(440)*0.07}).play(0,2);');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond2=false;
   motif_cond2counter=0;
+} else {
+
 }
     // }
   }
@@ -419,7 +433,7 @@ if (cond2==true) {
   motif_cond2counter=0;
 }
 if (cond1==true) {
-  robot.typeString('Ndef(\\cond, {SinOsc.ar(440)*0.07}).play(0,2);');
+  robot.typeString('Ndef(\\cond, {LPF.ar(BrownNoise.ar(1), 678)*0.3}).play(0,2);');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond1=false;
   motif_cond1counter=0;
@@ -506,10 +520,12 @@ intervalsumH = intervalmemH.memory.reduce( (total,sum)=> { return total - sum});
 if (intervalsumM != 0) {
 if (Math.abs(intervalsumM) > 0) {
   memoryM.memory = [];
+  narcode = intervalM;
   console.log("mid interval -> " + intervalM);
   robot.typeString('~tremoloM = ' + intervalM);
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   if (mMap2 === true) {
+  narcode = intervalM;
   robot.typeString('~tremoloM = ' + intervalM);
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
@@ -518,7 +534,7 @@ if (Math.abs(intervalsumM) > 0) {
 
 if (intervalsumL != 0) {
   if (Math.abs(intervalsumL) > 0) {
-    memoryL.memory = [];
+    // memoryL.memory = [];
     console.log("low interval -> " + intervalL);
     if (lMap === true) {
     robot.typeString('Tdef(\\snippet2).set(\\rit, ' + intervalL + ' )');
@@ -533,7 +549,7 @@ if (intervalsumL != 0) {
 
 if (intervalsumH != 0) {
   if (Math.abs(intervalsumH) > 0) {
-    memoryL.memory = [];
+    // memoryL.memory = [];
 console.log("high interval -> " + intervalH);
 robot.typeString('~tremoloH = ' + intervalH);
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
@@ -549,3 +565,7 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
  });
 
  // TODO: re-mapping shouldn't change a parameter firts... debug that.
+
+
+/// match send it to a class and also store
+/// dynamic parallel recognition

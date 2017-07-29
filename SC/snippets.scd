@@ -10,8 +10,8 @@ t = TempoClock.default;
 t.tempo = 20/60;
 s.sync;
 // snippet 1: beat
-r = ();
-[1,2,3,4,5,6].do{|i| r[i] = 1};
+/*r = ();*/
+/*[1,2,3,4,5,6].do{|i| r[i] = 1};*/
 s.sync;
 ~amp1 = 0.1;
 ~rit = Pseq([Pfuncn({r[1]},1), Pfuncn({r[2]},1), Pfuncn({r[3]},1), Pfuncn({r[4]},1)], inf).asStream;
