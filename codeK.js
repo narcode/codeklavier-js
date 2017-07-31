@@ -5,8 +5,8 @@ var midi = require('midi');
 var input = new midi.input();
 
 // Get the name of a specified input port.
-input.getPortName(2);
-input.openPort(2);
+input.getPortName(1);
+input.openPort(1);
 
 input.on('message', function(deltaTime, msg) {
 
@@ -14,7 +14,7 @@ input.on('message', function(deltaTime, msg) {
 
 if (msg[2] > 0) {
 
-if (msg[0] == 152) {
+if (msg[0] == 144) {
 switch (msg[1]) {
   // chars and nums
   case 69: robot.keyTap('h'); break;
