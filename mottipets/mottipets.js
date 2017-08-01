@@ -14,8 +14,8 @@ for (i=0; i<ports; i++) {
 
 // TODO: make this interactive:
 // Get the name of a specified input port.
-input.getPortName(2);
-input.openPort(2);
+input.getPortName(1);
+input.openPort(1);
 
 // motifs:
 var motifs = [];
