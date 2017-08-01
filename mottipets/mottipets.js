@@ -16,7 +16,8 @@ for (i=0; i<ports; i++) {
 // Get the name of a specified input port.
 input.getPortName(1);
 input.openPort(1);
-
+input.getPortName(2);
+input.openPort(2);
 // motifs:
 var motifs = [];
 
@@ -427,13 +428,13 @@ if (compareMotif(motifmem.memory, result2) == true) {
 // if (result1counter == 1) {
 console.log("motif result 2 on!");
 if (cond2==true) {
-  robot.typeString('Ndef(\\cond, {LPF.ar(BrownNoise.ar(1), 678)*0.3}).play(0,2);');
+  robot.typeString('Tdef(\\snippet2).stop');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond2=false;
   motif_cond2counter=0;
 }
 if (cond1==true) {
-  robot.typeString('Ndef(\\cond, {LPF.ar(BrownNoise.ar(1), 678)*0.3}).play(0,2);');
+  robot.typeString('Tdef(\\snippet2).stop');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond1=false;
   motif_cond1counter=0;
