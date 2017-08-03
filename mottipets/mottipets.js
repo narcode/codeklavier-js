@@ -14,8 +14,6 @@ for (i=0; i<ports; i++) {
 
 // TODO: make this interactive:
 // Get the name of a specified input port.
-input.getPortName(1);
-input.openPort(1);
 input.getPortName(2);
 input.openPort(2);
 // motifs:
@@ -213,8 +211,10 @@ var hMap2 = false;
 var mMap2 = false;
 
 // conditionals:
+var cond_buffer = new Mem4block();
 var cond1 = '';
 var cond2 = '';
+listen_to_conditional = false;
 // result1 = false;
 
 // tests
@@ -225,8 +225,7 @@ var narcode = 0;
    // motifs.push(msg[1]);
    if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);
-
-motifmem.memorize(msg[1], 20, true, 'Big motifs -> ');
+motifmem.memorize(msg[1], 20, false, 'Big motifs -> ');
 
 if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
 premotifmem.memorize(msg[1], chromatic.length*1);
@@ -350,7 +349,7 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
-   robot.typeString('~snippet2 = Tdef(\\snippet2, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(100, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play;');
+   robot.typeString('~snippet1 = Tdef(\\snippet1, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(100, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play;');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    // ignore or listen to motif based on delta time?
  ignore = true;
@@ -376,12 +375,12 @@ console.log("motif 2 on");
  if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
 if (compareMotif(motifmem.memory, conditional1) == true) {
 motif_cond1counter++;
-// if (motif_cond1counter == 1) {
+if (motif_cond1counter == 1) {
 console.log("motif conditional 1 on!" + "intervalM is " + narcode);
 if (motif2counter >= 1 && mMap2 === true && narcode > 7) {
 cond1 = true;
   }
-    // }
+    }
   }
 }
 if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
@@ -407,9 +406,9 @@ if (cond1==true) {
   motif_cond1counter=0;
 } else {
   // robot.keyTap('.', 'command');
-  narctest = narcode+7;
-  robot.typeString('~tremoloM = ' + narctest);
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  // narctest = narcode;
+  // robot.typeString('~tremoloM = ' + narctest);
+  // robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 if (cond2==true) {
   robot.typeString('Ndef(\\cond, {SinOsc.ar(440)*0.07}).play(0,2);');
@@ -423,23 +422,47 @@ if (cond2==true) {
   }
 }
 if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
+
+if (listen_to_conditional == true) {
+  cond_buffer.memorize(msg[1], 150, false, 'Cond buffer: ');
+}
+
 if (compareMotif(motifmem.memory, result2) == true) {
-// result1counter++;
-// if (result1counter == 1) {
+  listen_to_conditional = true;
+result2counter++;
+if (result2counter == 1) {
 console.log("motif result 2 on!");
 if (cond2==true) {
-  robot.typeString('Tdef(\\snippet2).stop');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  cond2=false;
-  motif_cond2counter=0;
+  console.log("conditional 2 is true!");
+
+var size = 0;
+
+conditional_loop = setInterval(()=> {
+  size = cond_buffer.memory.length;
+  if (size > 100) {
+    robot.typeString('Tdef(\\snippet1).stop');
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    console.log("stopping buffer conditional");
+    clearInterval(conditional_loop);
+    cond2=false;
+    motif_cond2counter=0;
+    result2counter = 0;
+    ignore = false;
+  } else {
+    console.log("cond buffer size : " + size);
+    }
+  cond_buffer.memory = [];
+},5000);
+
+
 }
 if (cond1==true) {
-  robot.typeString('Tdef(\\snippet2).stop');
+  robot.typeString('Tdef(\\snippet1).stop');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond1=false;
   motif_cond1counter=0;
 }
-    // }
+    }
   }
 }
 
@@ -474,9 +497,9 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == 144 && msg[2] > 0 && deltaTime < 0.1) {
 // console.log("DT -> " + deltaTime);
-memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, true, 'tremolo L');
-memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, true, 'tremolo M');
-memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, true, 'tremolo H');
+memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, false, 'tremolo L');
+memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, false, 'tremolo M');
+memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, false, 'tremolo H');
 
 listenL = countNotes(memoryL.memory, msg[1]);
 listenM = countNotes(memoryM.memory, msg[1]);
@@ -538,7 +561,7 @@ if (intervalsumL != 0) {
     // memoryL.memory = [];
     console.log("low interval -> " + intervalL);
     if (lMap === true) {
-    robot.typeString('Tdef(\\snippet2).set(\\rit, ' + intervalL + ' )');
+    robot.typeString('Tdef(\\snippet1).set(\\rit, ' + intervalL + ' )');
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
     if (lMap2 === true) {
