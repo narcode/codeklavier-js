@@ -36,22 +36,41 @@ function compareMotif(array, motif) {
   var value = '';
   array.forEach( (note) => {
     compareArray.push(motif2.indexOf(note));
-    // console.log(compareArray.slice(-motif2.length));
+    console.log(compareArray.slice(-motif2.length));
     var memlast = compareArray.slice(-motif.length);
     if (memlast.length >= motif.length) {
     if (memlast.indexOf(-1) != -1) {
       console.log("no match motif :(")
       value = false;
     } else {
+      // 0 - 5 + 8-11
+      var sum = compareArray.reduce((sum, value)=> {
+        return sum + value;
+      });
+      if (sum == 55) {
+      console.log("array check: " + sum);
       value = true;
       console.log("match motif!!!!");
+    } else {
+      console.log("no match motif :(")
+      value = false;
+    }
       }
     }
   });
   return value;
 }
 
-console.log(compareMotif(test3, motif2));
+
+var motif2 = [63,72,60,68,51,44,60,63,61,58,55,49];
+
+var not = [72,44,51,68,63,60,63,68,72,68,63,60];
+
+// good:
+var good = [72,68,51,63,60,44,63,60,58,61,49,55];
+
+
+console.log("MOTIF DEBUG: " + compareMotif(good, motif2));
 
 
 

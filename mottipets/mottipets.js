@@ -172,6 +172,36 @@ function compareMotif(array, motif) {
   return value
 }
 
+function compareMotifnoTolerance(array, motif, tolerance) {
+  var compareArray = [];
+  var value = '';
+  array.forEach( (note) => {
+    compareArray.push(motif.indexOf(note));
+    // console.log(compareArray.slice(-motif2.length));
+    var memlast = compareArray.slice(-motif.length);
+    if (memlast.length >= motif.length) {
+    if (memlast.indexOf(-1) != -1) {
+      // console.log("no match motif :(")
+      value = false;
+    } else {
+      // 0 - 5 + 8-11
+      var sum = compareArray.reduce((sum, value)=> {
+        return sum + value;
+      });
+      if (sum == tolerance) {
+      // console.log("array check: " + sum);
+      value = true;
+      // console.log("matched motif No Tolerance!!!!");
+    } else {
+      // console.log("no match motif :(")
+      value = false;
+        }
+      }
+    }
+  });
+  compareArray = [];
+  return value;
+}
 
 // for tremolos:
 var memoryL = new Mem4block();
@@ -360,11 +390,12 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
 
       // motif 2:
       if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
-   if (compareMotif(motifmem.memory, motif2) == true) {
+   if (compareMotifnoTolerance(motifmem.memory, motif2, 55) == true) {
      motif2counter++;
+     console.log("motif 2 matched " + motif2counter);
      if (motif2counter == 1) {
 console.log("motif 2 on");
-   robot.typeString('~snippet1 = Ndef(\\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);');
+   robot.typeString('~snippet2 = Ndef(\\acc, {|note=500, amp=0.1, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    // TODO: make a playing=true variable to prevent modification of the snippet before its played. or use motif counter -> DONE
       }
@@ -396,14 +427,15 @@ cond2 = true;
 // conditional-result motifs:
 if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:
 if (compareMotif(motifmem.memory, result1) == true) {
-// result1counter++;
-// if (result1counter == 1) {
+result1counter++;
+if (result1counter == 1) {
 console.log("motif result 1 on!");
 if (cond1==true) {
   robot.typeString('Ndef(\\cond, {SinOsc.ar(440)*0.07}).play(0,2);');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond1=false;
   motif_cond1counter=0;
+  result1counter = 0;
 } else {
   // robot.keyTap('.', 'command');
   // narctest = narcode;
@@ -415,10 +447,11 @@ if (cond2==true) {
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond2=false;
   motif_cond2counter=0;
+  result1counter = 0;
 } else {
 
 }
-    // }
+    }
   }
 }
 if (msg[0] == 144 && msg[2] > 0) { // filling in the memory:

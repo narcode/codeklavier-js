@@ -36,7 +36,7 @@ s.sync;
 //loop listener? is there a better solution?
 Tdef(\listenerkr, {
   loop{
-    Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 3000)}); // pitch
+    Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 1300)}); // pitch
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
 
