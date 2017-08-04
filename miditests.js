@@ -11,8 +11,8 @@ for (i=0; i<ports; i++) {
 };
 
 // Get the name of a specified input port.
-input.getPortName(1);
-input.openPort(1);
+input.getPortName(2);
+input.openPort(2);
 
 // Configure a callback.
 input.on('message', function(deltaTime, msg) {
