@@ -34,4 +34,6 @@ The codeklavier development adventure has just begun (March-April 2017). This is
 
 You might want to use *Atom* and use a git plugin and a supercollider plugin.
 
+*** Currently refactoring everything into Python3! :D (https://github.com/narcode/codeklavier-python) ***
+
 # This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
