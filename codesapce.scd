@@ -1,11 +1,11 @@
-// universal"
+// universal
 ~path = thisProcess.nowExecutingPath.dirname
 
-// hello world (and NKK)
-(~path ++ "/SC/CodeKlavier_hello_world_v3.scd").load;
+// hello world Nacht van Kunst en Kennis
+(~path ++ "/SC/CodeKlavier_hello_world_nkk.scd").load;
 (~path ++ "/SC/toypiano_sampler.scd").load;
 
 // mottipets:
-(~path ++ "/SC/snippets.scd").load;
+/*(~path ++ "/SC/snippets.scd").load;*/
 
 //////////// ⬇
