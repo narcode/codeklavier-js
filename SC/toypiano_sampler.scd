@@ -2,7 +2,7 @@
 
 -> toy piano sampler by narcode. April 2017 <-
 
-Thanks to BobRob and Anne Veinberg for Recording this
+Thanks to Anne Veinberg for Recording this
 
 */
 
