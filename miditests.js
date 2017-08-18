@@ -25,7 +25,7 @@ input.on('message', function(deltaTime, msg) {
 
 //msg[3]
 // velocity
-if (msg[0] == 144) {
+if (msg[0] == 152) {
 
   console.log('m:' + msg + ' deltaTime: ' + deltaTime);
 }

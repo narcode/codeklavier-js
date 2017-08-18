@@ -11,6 +11,8 @@ m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
 // hello world \\
 (
+t=TempoClock.default.tempo=1;
+s.sync;
 "setting variables adn ostinatos...".postln;
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
 // adjust the quant;
@@ -121,7 +123,7 @@ MIDIdef.cc(\pedalpitchop1).free;
 MIDIdef.cc(\pedalpitchop2).free;
 	};
 
-	if (~down == 1) {
+	if (~neer == 1) {
 		("down ---> running").postln;
 		MIDIdef.cc(\pedalpitchd, {arg ...args;
 			if (args[1] == 64) {
@@ -131,13 +133,13 @@ MIDIdef.cc(\pedalpitchop2).free;
 		});
 	};
 
-	if (~down == 0) {
+	if (~neer == 0) {
 		/*("down ----> stopped").postln;*/
 
 MIDIdef.cc(\pedalpitchd).free;
 	};
 
-	if (~down1 == 1) {
+	if (~neer1 == 1) {
 		MIDIdef.cc(\pedalpitchd1, {arg ...args;
 			if (args[1] == 64) {
 				~pitch1 = args[0].linlin(0, 127, 0, -7).round(1);
@@ -146,11 +148,11 @@ MIDIdef.cc(\pedalpitchd).free;
 		});
 	};
 
-	if (~down1 == 0) {
+	if (~neer1 == 0) {
 MIDIdef.cc(\pedalpitchd1).free;
 	};
 
-	if (~down2 == 1) {
+	if (~neer2 == 1) {
 		MIDIdef.cc(\pedalpitchd2, {arg ...args;
 			if (args[1] == 64) {
 				~pitch2 = args[0].linlin(0, 127, 0, -7).round(1);
@@ -159,7 +161,7 @@ MIDIdef.cc(\pedalpitchd1).free;
 		});
 	};
 
-	if (~down2 == 0) {
+	if (~neer2 == 0) {
 MIDIdef.cc(\pedalpitchd2).free;
 	};
 }; }, 1, name: "pedalwatch");

@@ -583,11 +583,11 @@ if (Math.abs(intervalsumM) > 0) {
   memoryM.memory = [];
   narcode = intervalM;
   console.log("mid interval -> " + intervalM);
-  robot.typeString('~tremoloM = ' + intervalM);
+  robot.typeString(intervalM);
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   if (mMap2 === true) {
   narcode = intervalM;
-  robot.typeString('~tremoloM = ' + intervalM);
+  robot.typeString(intervalM);
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
     }
@@ -602,7 +602,7 @@ if (intervalsumL != 0) {
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
     if (lMap2 === true) {
-    robot.typeString('~tremoloL = ' + intervalL);
+    robot.typeString(intervalL);
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
   }
@@ -612,10 +612,10 @@ if (intervalsumH != 0) {
   if (Math.abs(intervalsumH) > 0) {
     // memoryL.memory = [];
 console.log("high interval -> " + intervalH);
-robot.typeString('~tremoloH = ' + intervalH);
+robot.typeString(intervalH);
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 if (hMap2 === true) {
-robot.typeString('~tremoloH = ' + intervalH);
+robot.typeString(intervalH);
 robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
   }
