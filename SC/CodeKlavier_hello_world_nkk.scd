@@ -56,7 +56,7 @@ s.sync;
 ~h1o=~h2o=~h3o=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
-~op=0;~op2=0;~op3=0;~neer=0;~neer2=0;~neer3=0;
+~op=0;~op2=0;~op3=0;~neer=0;~neer2=0;~neer3=0; 
 s.sync;
 ~reset = Tdef(\reset, {1.do{h=e=l=o=w=d=a=r=n=1; t.tempo=1;
 	~afx=0;~afx2=0;~afx3=0;
