@@ -24,7 +24,7 @@ s.sync;
 MIDIdef.noteOn(\toypiano, {arg ...args;
   var midinote = args[1]-56;
   /*args.postln;*/
-  midinote.postln;
+  //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
   Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(6, group: g);
   Ndef((midinote.asString++"d0").asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
@@ -35,7 +35,7 @@ if (midinote < 64 && midinote >= 0) {
   MIDIdef.noteOn(\toypiano1, {arg ...args;
     var midinote = args[1]-56;
     /*args.postln;*/
-    midinote.postln;
+    //midinote.postln;
   if (midinote < 64 && midinote >= 0) {
     Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(20, group: g);
     Ndef((midinote.asString++"d1").asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
@@ -48,7 +48,7 @@ if (midinote < 64 && midinote >= 0) {
         var midinote = args[1]-56;
         var duplicate = midinote.asString++"d";
         /*args.postln;*/
-        midinote.postln;
+        //midinote.postln;
 
       if (midinote < 64 && midinote >= 0) {
         Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(4, group: g);
@@ -60,7 +60,7 @@ if (midinote < 64 && midinote >= 0) {
           MIDIdef.noteOn(\toypiano3, {arg ...args;
             var midinote = args[1]-56;
             /*args.postln;*/
-            midinote.postln;
+            //midinote.postln;
 
           if (midinote < 64 && midinote >= 0) {
             Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
