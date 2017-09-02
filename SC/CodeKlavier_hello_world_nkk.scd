@@ -107,7 +107,7 @@ Tdef(\maps1, {
 
 	1.do {
 
-	if (~op == 1) {
+	if (~op > 0) {
 		/*("op ---> running").postln;*/
 
 		MIDIdef.cc(\pedalpitch, {arg ...args;
@@ -118,12 +118,12 @@ Tdef(\maps1, {
 		});
 	};
 
-	if (~op == 0) {
+	if (~op < 0) {
 		/*("op ----> stopped").postln;*/
 MIDIdef.cc(\pedalpitch).free;
 	};
 
-	if (~op2 == 1) {
+	if (~op2 > 0) {
 		MIDIdef.cc(\pedalpitchop1, {arg ...args;
 			if (args[1] == 64) {
 				~pitch2 = args[0].linlin(0, 127, 0, 12).round(1);
@@ -132,11 +132,11 @@ MIDIdef.cc(\pedalpitch).free;
 		});
 	};
 
-	if (~op2 == 0) {
+	if (~op2 < 0) {
 MIDIdef.cc(\pedalpitchop1).free;
 	};
 
-	if (~op3 == 1) {
+	if (~op3 > 0) {
 		MIDIdef.cc(\pedalpitchop2, {arg ...args;
 			if (args[1] == 64) {
 				~pitch3 = args[0].linlin(0, 127, 0, 12).round(1);
@@ -145,11 +145,11 @@ MIDIdef.cc(\pedalpitchop1).free;
 		});
 	};
 
-	if (~op3 == 0) {
+	if (~op3 < 0) {
 MIDIdef.cc(\pedalpitchop2).free;
 	};
 
-	if (~neer == 1) {
+	if (~neer > 0) {
 		("down ---> running").postln;
 		MIDIdef.cc(\pedalpitchd, {arg ...args;
 			if (args[1] == 64) {
@@ -159,13 +159,13 @@ MIDIdef.cc(\pedalpitchop2).free;
 		});
 	};
 
-	if (~neer == 0) {
+	if (~neer < 0) {
 		/*("down ----> stopped").postln;*/
 
 MIDIdef.cc(\pedalpitchd).free;
 	};
 
-	if (~neer2 == 1) {
+	if (~neer2 > 0) {
 		MIDIdef.cc(\pedalpitchd1, {arg ...args;
 			if (args[1] == 64) {
 				~pitch2 = args[0].linlin(0, 127, 0, -7).round(1);
@@ -174,11 +174,11 @@ MIDIdef.cc(\pedalpitchd).free;
 		});
 	};
 
-	if (~neer2 == 0) {
+	if (~neer2 < 0) {
 MIDIdef.cc(\pedalpitchd1).free;
 	};
 
-	if (~neer3 == 1) {
+	if (~neer3 > 0) {
 		MIDIdef.cc(\pedalpitchd2, {arg ...args;
 			if (args[1] == 64) {
 				~pitch3 = args[0].linlin(0, 127, 0, -7).round(1);
@@ -187,7 +187,7 @@ MIDIdef.cc(\pedalpitchd1).free;
 		});
 	};
 
-	if (~neer3 == 0) {
+	if (~neer3 < 0) {
 MIDIdef.cc(\pedalpitchd2).free;
 	};
 }; }, 1, name: "pedalwatch");
