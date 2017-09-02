@@ -23,11 +23,11 @@ s.sync;
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \chan,3,\midiout, m)});
 ~ost.quant=~quant;
-~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/o}, 1), Pfuncn({1/w},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch1},
+~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/o}, 1), Pfuncn({1/w},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch2},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi,\chan,3,\midiout, m)});
 ~ost2.quant=~quant;
-~ost3=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/d}, 1), Pfuncn({1/a},1), Pfuncn({1/n},1)], inf), \ctranspose, Pfunc{~pitch2},
+~ost3=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/d}, 1), Pfuncn({1/a},1), Pfuncn({1/n},1)], inf), \ctranspose, Pfunc{~pitch3},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi,\chan,3,\midiout, m)});
 ~ost3.quant=~quant;
@@ -56,7 +56,7 @@ s.sync;
 ~h1o=~h2o=~h3o=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
-~op=0;~op2=0;~op3=0;~neer=0;~neer2=0;~neer3=0; 
+~op=0;~op2=0;~op3=0;~neer=0;~neer2=0;~neer3=0;
 s.sync;
 ~reset = Tdef(\reset, {1.do{h=e=l=o=w=d=a=r=n=1; t.tempo=1;
 	~afx=0;~afx2=0;~afx3=0;
