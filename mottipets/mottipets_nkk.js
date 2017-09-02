@@ -14,10 +14,10 @@ for (i=0; i<ports; i++) {
 
 // TODO: make this interactive:
 // Get the name of a specified input port.
-input.getPortName(2);
-input.openPort(2);
+input.getPortName(1);
+input.openPort(1);
 
-var deviceid = 152;
+var deviceid = 144;
 
 // motifs:
 var motifs = [];
@@ -265,14 +265,17 @@ if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
 premotifmem.memorize(msg[1], chromatic.length*1);
 }
 
+// piano divisions (not for NKK)
+// if (msg[1] <= pianosectons[0]) {
+// minimotifsL.memorize(msg[1], 20, false, 'L');
+// } else if (msg[1] <= pianosectons[1]) {
+// minimotifsM.memorize(msg[1], 20, false, 'M');
+// } else if (msg[1] > pianosectons[1]) {
+// minimotifsH.memorize(msg[1], 20, false, 'H');
+// }
 
-if (msg[1] <= pianosectons[0]) {
-minimotifsL.memorize(msg[1], 20, false, 'L');
-} else if (msg[1] <= pianosectons[1]) {
 minimotifsM.memorize(msg[1], 20, false, 'M');
-} else if (msg[1] > pianosectons[1]) {
-minimotifsH.memorize(msg[1], 20, false, 'H');
-}
+
 
    } // fi
 
@@ -534,48 +537,48 @@ chromatic.forEach( (elem)=>{
 // motifs.push(msg[1]);
 if (msg[0] == deviceid && msg[2] > 0 && deltaTime < 0.1) {
 // console.log("DT -> " + deltaTime);
-memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, false, 'tremolo L');
+// memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, false, 'tremolo L');
 memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, false, 'tremolo M');
-memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, false, 'tremolo H');
+// memoryH.memorize(minimotifsH.memory[minimotifsH.memory.length-1], 4, false, 'tremolo H');
 
-listenL = countNotes(memoryL.memory, msg[1]);
+// listenL = countNotes(memoryL.memory, msg[1]);
 listenM = countNotes(memoryM.memory, msg[1]);
-listenH = countNotes(memoryH.memory, msg[1]);
+// listenH = countNotes(memoryH.memory, msg[1]);
 
 // console.log("no. of repeated noted -> " + listenH);
 
 // maybe put in switch?
-if (listenL == 2) { // tremolo = 4
-intervalL = Math.abs(memoryL.memory[2] - memoryL.memory[3]);
-//console.log("low interval -> " + intervalL);
-}
+// if (listenL == 2) { // tremolo = 4
+// intervalL = Math.abs(memoryL.memory[2] - memoryL.memory[3]);
+// //console.log("low interval -> " + intervalL);
+// }
 
 if (listenM == 2) {
   intervalM = Math.abs(memoryM.memory[2] - memoryM.memory[3]);
   // console.log("mid interval -> " + intervalM);
 }
 
-if (listenH == 2) {
-  intervalH = Math.abs(memoryH.memory[2] - memoryH.memory[3]);
-  // console.log("hi interval -> " + intervalH);
-}
+// if (listenH == 2) {
+//   intervalH = Math.abs(memoryH.memory[2] - memoryH.memory[3]);
+//   // console.log("hi interval -> " + intervalH);
+// }
 
-if (intervalL > 0) {
-  intervalmemL.memorize(intervalL, 2, false, 'LMEM');
-  intervalsumL = intervalmemL.memory.reduce( (total,sum)=> {var sum = total-sum; return sum});
-  // console.log("interval reduce L -> " + intervalsumL);
-}
+// if (intervalL > 0) {
+//   intervalmemL.memorize(intervalL, 2, false, 'LMEM');
+//   intervalsumL = intervalmemL.memory.reduce( (total,sum)=> {var sum = total-sum; return sum});
+//   // console.log("interval reduce L -> " + intervalsumL);
+// }
 
 if (intervalM > 0) {
 intervalmemM.memorize(intervalM, 2);
 intervalsumM = intervalmemM.memory.reduce( (total,sum)=> { return total - sum});
 }
 
-if (intervalH > 0) {
-intervalmemH.memorize(intervalH, 2);
-intervalsumH = intervalmemH.memory.reduce( (total,sum)=> { return total - sum});
-// console.log("interval reduce H -> " + intervalsumH);
-}
+// if (intervalH > 0) {
+// intervalmemH.memorize(intervalH, 2);
+// intervalsumH = intervalmemH.memory.reduce( (total,sum)=> { return total - sum});
+// // console.log("interval reduce H -> " + intervalsumH);
+// }
 // console.log("sum -> " + intervalsum);
 
 if (intervalsumM != 0) {
@@ -584,42 +587,42 @@ if (Math.abs(intervalsumM) > 0) {
   narcode = intervalM;
   console.log("mid interval -> " + intervalM);
   robot.typeString(intervalM);
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  robot.keyTap('enter', 'shift');
   if (mMap2 === true) {
   narcode = intervalM;
-  robot.typeString(intervalM);
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  // robot.typeString(intervalM);
+  // robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   }
     }
   }
 
-if (intervalsumL != 0) {
-  if (Math.abs(intervalsumL) > 0) {
-    // memoryL.memory = [];
-    console.log("low interval -> " + intervalL);
-    if (lMap === true) {
-    robot.typeString('Tdef(\\snippet1).set(\\rit, ' + intervalL + ' )');
-    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-    }
-    if (lMap2 === true) {
-    robot.typeString(intervalL);
-    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-    }
-  }
-}
-
-if (intervalsumH != 0) {
-  if (Math.abs(intervalsumH) > 0) {
-    // memoryL.memory = [];
-console.log("high interval -> " + intervalH);
-robot.typeString(intervalH);
-robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-if (hMap2 === true) {
-robot.typeString(intervalH);
-robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-}
-  }
-}
+// if (intervalsumL != 0) {
+//   if (Math.abs(intervalsumL) > 0) {
+//     // memoryL.memory = [];
+//     console.log("low interval -> " + intervalL);
+//     if (lMap === true) {
+//     // robot.typeString('Tdef(\\snippet1).set(\\rit, ' + intervalL + ' )');
+//     // robot.keyTap('enter', 'shift');
+//     }
+//     if (lMap2 === true) {
+//     // robot.typeString(intervalL);
+//     // robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//     }
+//   }
+// }
+//
+// if (intervalsumH != 0) {
+//   if (Math.abs(intervalsumH) > 0) {
+//     // memoryL.memory = [];
+// console.log("high interval -> " + intervalH);
+// // robot.typeString(intervalH);
+// // robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+// if (hMap2 === true) {
+// // robot.typeString(intervalH);
+// // robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+// }
+//   }
+// }
 
 } // fi tremolo
 
