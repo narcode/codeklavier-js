@@ -4,6 +4,7 @@ var robot = require("robotjs.node");
 
 // Set up a new input.
 var input = new midi.input();
+var output = new midi.output();
 
 // Count the available input ports.
 var ports = input.getPortCount();
@@ -12,10 +13,18 @@ for (i=0; i<ports; i++) {
   console.log('index: ' + i + ' -> ' + input.getPortName(i));
 };
 
+var ports = output.getPortCount();
+
+for (i=0; i<ports; i++) {
+  console.log('output index: ' + i + ' -> ' + input.getPortName(i));
+};
+
 // TODO: make this interactive:
 // Get the name of a specified input port.
-input.getPortName(1);
-input.openPort(1);
+input.getPortName(2);
+input.openPort(2);
+output.getPortName(0);
+output.openPort(0);
 
 var deviceid = 144;
 
@@ -535,7 +544,7 @@ chromatic.forEach( (elem)=>{
 
 // chain to tremolo recognition:
 // motifs.push(msg[1]);
-if (msg[0] == deviceid && msg[2] > 0 && deltaTime < 0.1) {
+if (msg[0] == deviceid && msg[2] > 0 && deltaTime < 0.2) {
 // console.log("DT -> " + deltaTime);
 // memoryL.memorize(minimotifsL.memory[minimotifsL.memory.length-1], 4, false, 'tremolo L');
 memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, false, 'tremolo M');
@@ -586,8 +595,13 @@ if (Math.abs(intervalsumM) > 0) {
   memoryM.memory = [];
   narcode = intervalM;
   console.log("mid interval -> " + intervalM);
+  console.log("sent midi delegate -> " + intervalM);
+  if (intervalM == 3) {
+  output.sendMessage([144, 64, 1]);
+  }
   robot.typeString(intervalM);
   robot.keyTap('enter', 'shift');
+  // midi delegate:
   if (mMap2 === true) {
   narcode = intervalM;
   // robot.typeString(intervalM);

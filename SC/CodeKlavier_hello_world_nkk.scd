@@ -14,15 +14,15 @@ s.sync;
 t = TempoClock.default.tempo=1;
 s.sync;
 "setting variables and ostinatos...".postln;
-~pitch = 0;~pitch2 = 0;~pitch3 = 0;
+~pitch1 = 0;~pitch2 = 0;~pitch3 = 0;
 // adjust the quant;
 ~quant=1/4;
 s.sync;
 // ostinatos:
-~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
+~ost1=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch1},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi, \chan,3,\midiout, m)});
-~ost.quant=~quant;
+~ost1.quant=~quant;
 ~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/o}, 1), Pfuncn({1/w},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch2},
 \midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 \type, \midi,\chan,3,\midiout, m)});
@@ -45,8 +45,8 @@ var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "
 \type, \midi, \midiout, m)})});
 s.sync;
 // hello pulse
-~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
-~hello.quant=~quant;
+~hello1=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~hello1.quant=~quant;
 ~hello2=Pdef(\hello2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
 ~hello2.quant=~quant;
 ~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
@@ -56,20 +56,20 @@ s.sync;
 ~h1o=~h2o=~h3o=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
-~op=0;~op2=0;~op3=0;~neer=0;~neer2=0;~neer3=0;
+~op1=0;~op2=0;~op3=0;~neer1=0;~neer2=0;~neer3=0;
 s.sync;
 ~reset = Tdef(\reset, {1.do{h=e=l=o=w=d=a=r=n=1; t.tempo=1;
-	~afx=0;~afx2=0;~afx3=0;
-	~del=1;~del2=1;~del3=3;
+	~afx1=0;~afx2=0;~afx3=0;
+	~del1=1;~del2=1;~del3=3;
 	~r3=1;
 	~h1o=~h2o=~h30=0;
-	~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
+	~ost1=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 	\midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 	\type, \midi, \midiout, m)});
-	~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/o}, 1), Pfuncn({1/w},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch1},
+	~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/f},1), Pfuncn({1/x},1)], inf), \ctranspose, Pfunc{~pitch1},
 	\midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 	\type, \midi, \midiout, m)});
-	~ost3=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/d}, 1), Pfuncn({1/a},1), Pfuncn({1/n},1)], inf), \ctranspose, Pfunc{~pitch2},
+	~ost3=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/n}, 1), Pfuncn({1/o},1), Pfuncn({1/p},1)], inf), \ctranspose, Pfunc{~pitch2},
 	\midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 	\type, \midi, \midiout, m)});
 		}
@@ -78,8 +78,8 @@ s.sync;
 );
 (
 "variables for SHA fx".postln;
-~afx=0;~afx2=0;~afx3=0;
-~del=1;~del2=1;~del3=3;
+~afx1=0;~afx2=0;~afx3=0;
+~del1=1;~del2=1;~del3=3;
 ~r3=1;
 	);
 (
@@ -91,14 +91,14 @@ Tdef(key.asSymbol, {*/
 Tdef(\maps1, {
 	inf.do{
 		/*"debug".postln;*/
-	Ndef(\fx).map(\del, Ndef(\krd, ~del));
-	Ndef(\fx).map(\amp, Ndef(\kra, ~afx));
+	Ndef(\fx).map(\del, Ndef(\krd, ~del1.abs+(0.0001)));
+	Ndef(\fx).map(\amp, Ndef(\kra, ~afx1.linlin(0, 5, 0, 2)+~afx1/100));
 
-	Ndef(\fx1).map(\del, Ndef(\krd2, ~del2));
-	Ndef(\fx1).map(\amp, Ndef(\kra2, ~afx2));
+	Ndef(\fx1).map(\del, Ndef(\krd2, ~del2.abs+(0.0001)));
+	Ndef(\fx1).map(\amp, Ndef(\kra2, ~afx2.linlin(0,5,0,2)+~afx2/100));
 
-	Ndef(\fx2).map(\del, Ndef(\krd3, ~del3));
-	Ndef(\fx2).map(\amp, Ndef(\kra3, ~afx3));
+	Ndef(\fx2).map(\del, Ndef(\krd3, ~del3.abs+(0.0001)));
+	Ndef(\fx2).map(\amp, Ndef(\kra3, ~afx3.linlin(0,5,0,2)+~afx3/100));
 	Ndef(\fx2).map(\rate, Ndef(\krr3, ~r3));
 0.1.wait;
 }
@@ -107,18 +107,18 @@ Tdef(\maps1, {
 
 	1.do {
 
-	if (~op > 0) {
+	if (~op1 > 0) {
 		/*("op ---> running").postln;*/
 
 		MIDIdef.cc(\pedalpitch, {arg ...args;
 			if (args[1] == 64) {
-				~pitch = args[0].linlin(0, 127, 0, 12).round(1);
-				("ostinato1 ***" + ~pitch + " semitones up").postln;
+				~pitch1 = args[0].linlin(0, 127, 0, 12).round(1);
+				("ostinato1 ***" + ~pitch1 + " semitones up").postln;
 			}
 		});
 	};
 
-	if (~op < 0) {
+	if (~op1 < 0) {
 		/*("op ----> stopped").postln;*/
 MIDIdef.cc(\pedalpitch).free;
 	};
@@ -149,17 +149,17 @@ MIDIdef.cc(\pedalpitchop1).free;
 MIDIdef.cc(\pedalpitchop2).free;
 	};
 
-	if (~neer > 0) {
+	if (~neer1 > 0) {
 		("down ---> running").postln;
 		MIDIdef.cc(\pedalpitchd, {arg ...args;
 			if (args[1] == 64) {
-				~pitch = args[0].linlin(0, 127, 0, -7).round(1);
-				("ostinato1 ***" + ~pitch + " semitones down").postln;
+				~pitch1 = args[0].linlin(0, 127, 0, -7).round(1);
+				("ostinato1 ***" + ~pitch1 + " semitones down").postln;
 			}
 		});
 	};
 
-	if (~neer < 0) {
+	if (~neer1 < 0) {
 		/*("down ----> stopped").postln;*/
 
 MIDIdef.cc(\pedalpitchd).free;
