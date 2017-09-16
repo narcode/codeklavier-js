@@ -63,6 +63,9 @@ var intervalsumL = 0;
 var intervalsumM = 0;
 var intervalsumH = 0;
 
+// delegate
+intervalM_counter = 0;
+
 // to listen/ignore the chromatic motif
 var ignore = false;
 
@@ -589,19 +592,25 @@ intervalsumM = intervalmemM.memory.reduce( (total,sum)=> { return total - sum});
 // // console.log("interval reduce H -> " + intervalsumH);
 // }
 // console.log("sum -> " + intervalsum);
-
+var delegate_lifespan = 15;
 if (intervalsumM != 0) {
 if (Math.abs(intervalsumM) > 0) {
   memoryM.memory = [];
   narcode = intervalM;
+  intervalM_counter++;
   console.log("mid interval -> " + intervalM);
-  console.log("sent midi delegate -> " + intervalM);
-  if (intervalM == 3) {
+  if (intervalM_counter < delegate_lifespan) {   // midi delegate:
+  console.log("sent midi delegate no. "
+  + intervalM_counter + " -> " + intervalM);
   output.sendMessage([144, 64, 1]);
   }
+  if (intervalM_counter == delegate_lifespan) {   // midi delegate:
+  console.log("sent midi delegate BREAK");
+  output.sendMessage([144, 64, 2]);
+  }
+
   robot.typeString(intervalM);
   robot.keyTap('enter', 'shift');
-  // midi delegate:
   if (mMap2 === true) {
   narcode = intervalM;
   // robot.typeString(intervalM);
