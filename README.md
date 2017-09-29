@@ -1,4 +1,4 @@
-# CodeKlavier (motipetts branch)
+# CodeKlavier (master branch)
 
 programming with the piano as interface
 
