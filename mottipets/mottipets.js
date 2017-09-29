@@ -256,8 +256,9 @@ var narcode = 0;
 
 // parallel process:
 input.on('message', function(deltaTime, msg) {
-  if (msg[1] >= pianosectons[1])
-  minimotifsM.memorize(msg[1], 20, false, 'M');
+  if (msg[1] >= pianosectons[0] && msg[1] < pianosectons[1] ) {
+  minimotifsM.memorize(msg[1], 20, true, 'Parellel M');
+
 
   if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
     mmotifcountM++;
@@ -313,17 +314,17 @@ input.on('message', function(deltaTime, msg) {
     memoryM.memory = [];
     narcode = intervalM;
     console.log("mid interval -> " + intervalM);
-    robot.typeString('~tremoloM_parallel = ' + intervalM);
+    robot.typeString('~tremoloM = ' + intervalM);
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     if (mMap2 === true) {
     narcode = intervalM;
-    robot.typeString('~tremoloM_parallel = ' + intervalM);
+    robot.typeString('~tremoloM = ' + intervalM);
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
       }
     }
   } // fi tremolo
-
+  }
 });
 
  // on message write to a stream
@@ -346,34 +347,36 @@ minimotifsL.memorize(msg[1], 20, false, 'L');
 minimotifsH.memorize(msg[1], 20, false, 'H');
 }
 
-if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
-  mmotifcountM++;
-  if (mmotifcountM === 1) {
-    if (mmotifcountM2 > 0) {mmotifcountM2 = 0};
-  console.log("motif M mapped! --> " + mmotifcountM + ' times...');
-  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  // unmap others:
-  if (motif2counter > 0) {
-  mMap2 = false;
-  robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-    }
-  }
-}
-if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
-  mmotifcountM2++;
-  if (mmotifcountM2 === 1) {
-    if (mmotifcountM > 0) {mmotifcountM = 0};
-  console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
-  mMap2 = true; // do i need this ?
-  robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  // unmap others:
-  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));}');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  }
-}
+
+
+// if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
+//   mmotifcountM++;
+//   if (mmotifcountM === 1) {
+//     if (mmotifcountM2 > 0) {mmotifcountM2 = 0};
+//   console.log("motif M mapped! --> " + mmotifcountM + ' times...');
+//   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   // unmap others:
+//   if (motif2counter > 0) {
+//   mMap2 = false;
+//   robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//     }
+//   }
+// }
+// if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
+//   mmotifcountM2++;
+//   if (mmotifcountM2 === 1) {
+//     if (mmotifcountM > 0) {mmotifcountM = 0};
+//   console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
+//   mMap2 = true; // do i need this ?
+//   robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   // unmap others:
+//   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));}');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   }
+// }
    } // fi
 
 // Lowregister:
@@ -391,19 +394,19 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
   }
 }
-if (minimotifSearch(minimotifsL.memory, miniM2L, 2)) {
-  mmotifcountL2++;
-    if (mmotifcountL2 === 1) {
-      if (mmotifcountL > 0) {mmotifcountL = 0};
-  console.log("motif L2 mapped! --> " + mmotifcountL2 + ' times...');
-lMap2 = true;
-//unmap:
-lMap = false;
-//map:
-robot.typeString('Ndef(\\acc).map(\\amp, Ndef(\\krm2_2));');
-robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  }
-}
+// if (minimotifSearch(minimotifsL.memory, miniM2L, 2)) {
+//   mmotifcountL2++;
+//     if (mmotifcountL2 === 1) {
+//       if (mmotifcountL > 0) {mmotifcountL = 0};
+//   console.log("motif L2 mapped! --> " + mmotifcountL2 + ' times...');
+// lMap2 = true;
+// //unmap:
+// lMap = false;
+// //map:
+// robot.typeString('Ndef(\\acc).map(\\amp, Ndef(\\krm2_2));');
+// robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   }
+// }
 
 // Mid register:
 // if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
