@@ -32,8 +32,15 @@ s.sync;
 \type, \midi,\chan,3,\midiout, m)});
 ~ost3.quant=~quant;
 s.sync;
+// stop
+~stop=Tdef(\stop, {
+	1.do{
+	~hello1.stop;~hello2.stop;~hello3.stop;
+	~ost1.stop;~ost2.stop;~ost3.stop;
+	~reset.play;
+		};
+	});
 // random ostinatos
-
 ~rand=Tdef(\randostinato, {
 var rit = (1/2).rrand(4).round(0.5);
 var rit2 = (1/2).rrand(4).round(0.5);
@@ -63,13 +70,13 @@ s.sync;
 	~del1=1;~del2=1;~del3=3;
 	~r3=1;
 	~h1o=~h2o=~h30=0;
-	~ost1=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
+	~ost1=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch1},
 	\midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 	\type, \midi, \midiout, m)});
-	~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/f},1), Pfuncn({1/x},1)], inf), \ctranspose, Pfunc{~pitch1},
+	~ost2=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/f},1), Pfuncn({1/x},1)], inf), \ctranspose, Pfunc{~pitch2},
 	\midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 	\type, \midi, \midiout, m)});
-	~ost3=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/n}, 1), Pfuncn({1/o},1), Pfuncn({1/p},1)], inf), \ctranspose, Pfunc{~pitch2},
+	~ost3=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/n}, 1), Pfuncn({1/o},1), Pfuncn({1/p},1)], inf), \ctranspose, Pfunc{~pitch3},
 	\midinote, Pseq(["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "f3".namemidi, "db3".namemidi, "C4".namemidi], inf),
 	\type, \midi, \midiout, m)});
 		}

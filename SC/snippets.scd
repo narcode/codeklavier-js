@@ -21,7 +21,7 @@ s.sync;
 ~tremoloM = 1;
 ~tremoloH = 1;
 ~tremoloL = 2;
-~rit = 1;
+~rit = 0.1;
 ~ampacc= 0.4;
 /*~snippet1 = Ndef(\acc, {|note=500, amp=0.5, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);*/
 /*~snippet2 = Tdef(\snippet2, {
@@ -46,7 +46,7 @@ Tdef(\listenerkr, {
     Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 15)}); // fx
 
 
-    0.1.wait;
+    0.01.wait;
     }
 }).play;
 

@@ -254,12 +254,84 @@ listen_to_conditional = false;
 // tests
 var narcode = 0;
 
+// parallel process:
+input.on('message', function(deltaTime, msg) {
+  if (msg[1] >= pianosectons[1])
+  minimotifsM.memorize(msg[1], 20, false, 'M');
+
+  if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
+    mmotifcountM++;
+    if (mmotifcountM === 1) {
+      if (mmotifcountM2 > 0) {mmotifcountM2 = 0};
+    console.log("motif M mapped! --> " + mmotifcountM + ' times...');
+    robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    // unmap others:
+    if (motif2counter > 0) {
+    mMap2 = false;
+    robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+      }
+    }
+  }
+  if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
+    mmotifcountM2++;
+    if (mmotifcountM2 === 1) {
+      if (mmotifcountM > 0) {mmotifcountM = 0};
+    console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
+    mMap2 = true; // do i need this ?
+    robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    // unmap others:
+    robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));}');
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
+  }
+
+  if (deltaTime > 1) { // revise...
+    minimotifsM.memory = [];
+  }
+
+  if (msg[0] == deviceid && msg[2] > 0 && deltaTime < 0.1) {
+  // console.log("DT -> " + deltaTime);
+  memoryM.memorize(minimotifsM.memory[minimotifsM.memory.length-1], 4, false, 'tremolo M');
+
+  listenM = countNotes(memoryM.memory, msg[1]);
+
+  if (listenM == 2) {
+    intervalM = Math.abs(memoryM.memory[2] - memoryM.memory[3]);
+    // console.log("mid interval -> " + intervalM);
+  }
+
+  if (intervalM > 0) {
+  intervalmemM.memorize(intervalM, 2);
+  intervalsumM = intervalmemM.memory.reduce( (total,sum)=> { return total - sum});
+  }
+
+  if (intervalsumM != 0) {
+  if (Math.abs(intervalsumM) > 0) {
+    memoryM.memory = [];
+    narcode = intervalM;
+    console.log("mid interval -> " + intervalM);
+    robot.typeString('~tremoloM_parallel = ' + intervalM);
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    if (mMap2 === true) {
+    narcode = intervalM;
+    robot.typeString('~tremoloM_parallel = ' + intervalM);
+    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
+      }
+    }
+  } // fi tremolo
+
+});
+
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
    // motifs.push(msg[1]);
    if (msg[0] == deviceid && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);
-motifmem.memorize(msg[1], 20, false, 'Big motifs -> ');
+motifmem.memorize(msg[1], 20, true, 'Big motifs -> ');
 
 if (msg[1] >= chromatic[0] && msg[1] < chromatic[chromatic.length-1]) {
 premotifmem.memorize(msg[1], chromatic.length*1);
@@ -269,11 +341,39 @@ premotifmem.memorize(msg[1], chromatic.length*1);
 if (msg[1] <= pianosectons[0]) {
 minimotifsL.memorize(msg[1], 20, false, 'L');
 } else if (msg[1] <= pianosectons[1]) {
-minimotifsM.memorize(msg[1], 20, false, 'M');
+// minimotifsM.memorize(msg[1], 20, false, 'M');
 } else if (msg[1] > pianosectons[1]) {
 minimotifsH.memorize(msg[1], 20, false, 'H');
 }
 
+if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
+  mmotifcountM++;
+  if (mmotifcountM === 1) {
+    if (mmotifcountM2 > 0) {mmotifcountM2 = 0};
+  console.log("motif M mapped! --> " + mmotifcountM + ' times...');
+  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  // unmap others:
+  if (motif2counter > 0) {
+  mMap2 = false;
+  robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+    }
+  }
+}
+if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
+  mmotifcountM2++;
+  if (mmotifcountM2 === 1) {
+    if (mmotifcountM > 0) {mmotifcountM = 0};
+  console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
+  mMap2 = true; // do i need this ?
+  robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  // unmap others:
+  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));}');
+  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+  }
+}
    } // fi
 
 // Lowregister:
@@ -306,34 +406,34 @@ robot.keyTap('enter', 'shift'); robot.keyTap('enter');
 }
 
 // Mid register:
-if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
-  mmotifcountM++;
-  if (mmotifcountM === 1) {
-    if (mmotifcountM2 > 0) {mmotifcountM2 = 0};
-  console.log("motif M mapped! --> " + mmotifcountM + ' times...');
-  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  // unmap others:
-  if (motif2counter > 0) {
-  mMap2 = false;
-  robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-    }
-  }
-}
-if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
-  mmotifcountM2++;
-  if (mmotifcountM2 === 1) {
-    if (mmotifcountM > 0) {mmotifcountM = 0};
-  console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
-  mMap2 = true; // do i need this ?
-  robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  // unmap others:
-  robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));}');
-  robot.keyTap('enter', 'shift'); robot.keyTap('enter');
-  }
-}
+// if (minimotifSearch(minimotifsM.memory, miniM1M, 1)) {
+//   mmotifcountM++;
+//   if (mmotifcountM === 1) {
+//     if (mmotifcountM2 > 0) {mmotifcountM2 = 0};
+//   console.log("motif M mapped! --> " + mmotifcountM + ' times...');
+//   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).map(\\pitch, Ndef(\\krm1));}');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   // unmap others:
+//   if (motif2counter > 0) {
+//   mMap2 = false;
+//   robot.typeString('Ndef(\\acc).set(\\note, ~tremoloM.linlin(1, 16, 80, 800));');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//     }
+//   }
+// }
+// if (minimotifSearch(minimotifsM.memory, miniM2M, 2)) {
+//   mmotifcountM2++;
+//   if (mmotifcountM2 === 1) {
+//     if (mmotifcountM > 0) {mmotifcountM = 0};
+//   console.log("motif M2 mapped! --> " + mmotifcountM2 + ' times...');
+//   mMap2 = true; // do i need this ?
+//   robot.typeString('Ndef(\\acc).map(\\note, Ndef(\\krm2_1));');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   // unmap others:
+//   robot.typeString('[\\pulse, \\pulse2, \\pulse3, \\pulse4, \\pulse5, \\pulse6].do{|i| Ndef(i).set(\\pitch, ~tremoloM.linlin(1, 16, 200, 3000));}');
+//   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
+//   }
+// }
 
 // High register:
 if (minimotifSearch(minimotifsH.memory, miniM1H, 1)) {
@@ -383,7 +483,7 @@ if (minimotifSearch(minimotifsH.memory, miniM2H, 2)) {
    if (regtest.length > 0) {
    console.log('true! -> ' + regtest);
    console.log('length -> ' + chromatic.length);
-   robot.typeString('~snippet1 = Tdef(\\snippet1, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(100, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play;');
+   robot.typeString('~snippet1 = Tdef(\\1, {|ev| loop{ Ndef(~name.next, {|pitch=400,fx=88| SinOsc.ar(456*LFTri.kr(fx).range(100, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);(1/ev.rit).wait;}}).play(quant:0);');
    robot.keyTap('enter', 'shift'); robot.keyTap('enter');
    // ignore or listen to motif based on delta time?
  ignore = true;
@@ -477,7 +577,7 @@ var size = 0;
 conditional_loop = setInterval(()=> {
   size = cond_buffer.memory.length;
   if (size > 100) {
-    robot.typeString('Tdef(\\snippet1).stop');
+    robot.typeString('Tdef(\\1).stop');
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     console.log("stopping buffer conditional");
     clearInterval(conditional_loop);
@@ -494,7 +594,7 @@ conditional_loop = setInterval(()=> {
 
 }
 if (cond1==true) {
-  robot.typeString('Tdef(\\snippet1).stop');
+  robot.typeString('Tdef(\\1).stop');
   robot.keyTap('enter', 'shift'); robot.keyTap('enter');
   cond1=false;
   motif_cond1counter=0;
@@ -598,7 +698,7 @@ if (intervalsumL != 0) {
     // memoryL.memory = [];
     console.log("low interval -> " + intervalL);
     if (lMap === true) {
-    robot.typeString('Tdef(\\snippet1).set(\\rit, ' + intervalL + ' )');
+    robot.typeString('Tdef(\\1).set(\\rit, ' + intervalL + ' )');
     robot.keyTap('enter', 'shift'); robot.keyTap('enter');
     }
     if (lMap2 === true) {
