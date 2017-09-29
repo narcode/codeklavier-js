@@ -14,7 +14,7 @@ input.on('message', function(deltaTime, msg) {
 
 if (msg[2] > 0) {
 
-if (msg[0] == 155) {
+if (msg[0] == 144) {
 switch (msg[1]) {
   // chars and nums
   case 69: robot.keyTap('h'); break;

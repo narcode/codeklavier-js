@@ -1,4 +1,4 @@
-# CodeKlavier (hello world)
+# CodeKlavier (master branch)
 
 programming with the piano as interface
 
