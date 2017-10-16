@@ -41,7 +41,7 @@ Tdef(\listenerkr, {
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
 
 // motif2
-    Ndef(\krm2_1, {~tremoloM.linlin(1, 16, 80, 800)}); // pitch
+    Ndef(\krm2_1, {~tremoloM.linlin(1, 16, 180, 800)}); // pitch
     Ndef(\krm2_2, {~tremoloL.linlin(1, 16, 0, 1.5)}); // amp
     Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 15)}); // fx
 
