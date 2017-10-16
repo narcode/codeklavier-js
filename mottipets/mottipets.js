@@ -261,7 +261,7 @@ var narcode = 0;
 if (msg[0] == 176 && msg[1] == 66) {
 switch (msg[2]) {
   // chars and nums
-  case 32: robot.keyTap('enter'); robot.keyTap('enter', 'shift'); break;
+  case 127: robot.keyTap('enter'); robot.keyTap('enter', 'shift'); break;
   default: '';
   }
 };
