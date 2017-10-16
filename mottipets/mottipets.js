@@ -17,7 +17,7 @@ for (i=0; i<ports; i++) {
 input.getPortName(2);
 input.openPort(2);
 
-var deviceid = 152;
+var deviceid = 144;
 
 // motifs:
 var motifs = [];
@@ -256,6 +256,17 @@ var narcode = 0;
 
  // on message write to a stream
  input.on('message', function(deltaTime, msg) {
+
+// to get out of trouble:
+if (msg[0] == 176 && msg[1] == 66) {
+switch (msg[2]) {
+  // chars and nums
+  case 32: robot.keyTap('enter'); robot.keyTap('enter', 'shift'); break;
+  default: '';
+  }
+};
+
+
    // motifs.push(msg[1]);
    if (msg[0] == deviceid && msg[2] > 0) { // filling in the memory:
   //  console.log(motifs);

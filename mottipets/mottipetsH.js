@@ -17,7 +17,7 @@ for (i=0; i<ports; i++) {
 input.getPortName(2);
 input.openPort(2);
 
-var deviceid = 152;
+var deviceid = 144;
 
 // motifs:
 var motifs = [];
