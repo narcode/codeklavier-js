@@ -23,20 +23,16 @@ s.sync;
 ~tremoloL = 2;
 ~rit = 0.1;
 ~ampacc= 0.4;
-/*~snippet1 = Ndef(\acc, {|note=500, amp=0.5, cut=200, bw=0.5, fx=0.1| Resonz.ar(SinOsc.ar([note.lag(1), note.lag(2)*3/2, note*2, note.lag(1.5)*4/3]), note*LFTri.kr(fx).range(1/2, 8), bw) * amp.lag(0.5)}).play(0,2);*/
-/*~snippet2 = Tdef(\snippet2, {
-loop{
-Ndef(\pulse2, {|pitch=400| SinOsc.ar(456*LFTri.kr(88).range(300, pitch)) * EnvGen.kr(Env.perc) * ~amp1}).play(0,2);
-
-(1/1).wait;
-}
-  }).play;*/
+~map_rhythm = false;
 s.sync;
 
 //loop listener? is there a better solution?
 Tdef(\listenerkr, {
   loop{
     Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 1300)}); // pitch
+
+	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL);};
+
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
 
@@ -46,7 +42,7 @@ Tdef(\listenerkr, {
     Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 15)}); // fx
 
 
-    0.01.wait;
+    0.05.wait;
     }
 }).play;
 
