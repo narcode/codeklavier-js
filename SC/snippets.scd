@@ -42,7 +42,7 @@ Tdef(\listenerkr, {
     Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 15)}); // fx
 
 
-    0.05.wait;
+    0.08.wait;
     }
 }).play;
 
