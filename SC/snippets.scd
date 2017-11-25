@@ -20,7 +20,7 @@ s.sync;
 ~name = Pseq([\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6],inf).asStream;
 ~tremoloM = 1;
 ~tremoloH = 1;
-~tremoloL = 2;
+~tremoloL = 1;
 ~rit = 0.1;
 ~ampacc= 0.4;
 ~map_rhythm = false;
@@ -31,7 +31,7 @@ Tdef(\listenerkr, {
   loop{
     Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 1300)}); // pitch
 
-	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL);};
+	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL);}; // rit
 
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
