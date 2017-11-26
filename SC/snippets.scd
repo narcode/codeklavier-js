@@ -24,6 +24,7 @@ s.sync;
 ~rit = 0.1;
 ~ampacc= 0.4;
 ~map_rhythm = false;
+~map_amplitude = false;
 s.sync;
 
 //loop listener? is there a better solution?
@@ -33,6 +34,7 @@ Tdef(\listenerkr, {
 
 	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL);}; // rit
 
+	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL);} //amp
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
 
