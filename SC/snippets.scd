@@ -34,7 +34,7 @@ Tdef(\listenerkr, {
 
 	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL);}; // rit
 
-	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL);}; //amp
+	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL.linlin(1, 16, 0.1, 2));}; //amp
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
 
