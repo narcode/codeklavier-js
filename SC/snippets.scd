@@ -21,6 +21,13 @@ s.sync;
 ~tremoloM = 4;
 ~tremoloH = 16;
 ~tremoloL = 2;
+~tremoloL1 = 2;
+~tremoloL2 = 2;
+~tremoloL1amp = 2;
+~tremoloM1 = 2;
+~tremoloM2 = 2;
+~tremoloH1 = 2;
+~tremoloH2 = 2;
 ~rit = 0.1;
 ~ampacc= 0.4;
 ~map_rhythm = false;
@@ -30,18 +37,18 @@ s.sync;
 //loop listener? is there a better solution?
 Tdef(\listenerkr, {
   loop{
-    Ndef(\krm1, {~tremoloM.linlin(1, 16, 200, 1300)}); // pitch
+    Ndef(\krm1, {~tremoloM1.linlin(1, 16, 200, 1300)}); // pitch
 
-	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL);}; // rit
+	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL1);}; // rit
 
-	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL.linlin(1, 16, 0.01, 1));}; //amp
+	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL1amp.linlin(1, 16, 0.01, 1));}; //amp
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
-    Ndef(\krm3, {~tremoloH.linlin(1, 16, 1, 88)}); // fx
+    Ndef(\krm3, {~tremoloH1.linlin(1, 16, 1, 88)}); // fx
 
 // motif2
-    Ndef(\krm2_1, {~tremoloM.linlin(1, 16, 180, 800)}); // pitch
-    Ndef(\krm2_2, {~tremoloL.linlin(1, 16, 0, 1.5)}); // amp
-    Ndef(\krm2_3, {~tremoloH.linlin(1, 16, 0, 15)}); // fx
+    Ndef(\krm2_1, {~tremoloM2.linlin(1, 16, 180, 800)}); // pitch
+    Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0, 1.5)}); // amp
+    Ndef(\krm2_3, {~tremoloH2.linlin(1, 16, 0, 15)}); // fx
 
 
     0.08.wait;
