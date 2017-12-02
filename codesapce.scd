@@ -1,4 +1,4 @@
-// universal
+ // universal
 ~path = thisProcess.nowExecutingPath.dirname
 
 // hello world Nacht van Kunst en Kennis

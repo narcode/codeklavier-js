@@ -41,13 +41,13 @@ Tdef(\listenerkr, {
 
 	if (~map_rhythm == true) { Tdef(\1).set(\rit, ~tremoloL1);}; // rit
 
-	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL1amp.linlin(1, 16, 0.01, 1));}; //amp
+	if (~map_amplitude == true) {Tdef(\1).set(\amp, ~tremoloL1amp.linlin(1, 16, 0.01, 0.4));}; //amp
     /*Tdef(\snippet2).set(\rit, ~tremoloL);// speed*/
     Ndef(\krm3, {~tremoloH1.linlin(1, 16, 1, 88)}); // fx
 
 // motif2
     Ndef(\krm2_1, {~tremoloM2.linlin(1, 16, 180, 800)}); // pitch
-    Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0, 1.5)}); // amp
+    Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0.01, 0.4)}); // amp
     Ndef(\krm2_3, {~tremoloH2.linlin(1, 16, 0, 15)}); // fx
 
 
