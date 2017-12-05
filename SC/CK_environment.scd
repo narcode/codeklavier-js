@@ -1,6 +1,6 @@
 // CodeKlavier Environment
 
-~stopall = Environment[
+~stop = Environment[
   'now' -> {|self|
 "stopping".postln;
 ~hello.stop;
@@ -12,4 +12,4 @@
 }
 ];
 
-~stopall.know = true;
+~stop.know = true;
