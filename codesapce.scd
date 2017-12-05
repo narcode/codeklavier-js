@@ -8,4 +8,14 @@
 
 // mottipets:
 /*(~path ++ "/SC/snippets.scd").load;*/
- 
+
+~ost.stop
+~ost.play
+
+~op=1
+h=e=l=23
+h=e=l=10+1-2~
+stop
+.
+now
+~stop.now

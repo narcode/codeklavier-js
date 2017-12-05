@@ -3,6 +3,7 @@
 ~stop = Environment[
   'now' -> {|self|
 "stopping".postln;
+SkipJack.stop("pedalwatch");
 ~hello.stop;
 ~hello2.stop;
 ~hello3.stop;
