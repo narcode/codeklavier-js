@@ -1,15 +1,16 @@
-# CodeKlavier (master branch)
+# CodeKlavier (legacy javascript flavour)
 
 programming with the piano as interface
 
 An open-source project of Felipe Ignacio Noriega & Anne Veinberg
 
 <div class='dream'>
-<div>[ Current branches in active development:</div>
-<div> **Motipetts** (piano interacts with CodeKlavier via pianistic gestures) ]</div>
+<div>[ Current development is in Python 3!</div>
+<div> (<a href='https://github.com/narcode/codeklavier-python'>https://github.com/narcode/codeklavier-python</a>]</div>
 </div>
 
-The codeklavier development adventure has just begun (March-April 2017). This is a 'hello world' and more information will be added soon.
+The codeklavier development adventure has just begun (March-April 2017). This is a 'hello world'. For current development please follow the Python link above. Eventually, the CodeKlavier will also be ported to Javascript.
+
 <div class='dream'>
 <div>The dream: </div><div>a programming language for music as interface</div></div>
 <div class='dream'>
@@ -33,7 +34,5 @@ The codeklavier development adventure has just begun (March-April 2017). This is
 ### Tips & tricks
 
 You might want to use *Atom* and use a git plugin and a supercollider plugin.
-
-* Currently refactoring everything into Python3! :D (<a href='https://github.com/narcode/codeklavier-python'>https://github.com/narcode/codeklavier-python</a>)
 
 # This project is possible thanks to the Stimuleringsfonds Creatieve Industrie
